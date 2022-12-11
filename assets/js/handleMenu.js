@@ -16,7 +16,7 @@ const infoHtml =  `<div class="info-header">
 </div>
 <div class="info">
 <div class="user-img">
-  <img src="./assets/images/avatar.jpg" alt="" />
+  <img src="./assets/images/myavatar.jpg" alt="" />
 </div>
 <div class="user-info">
 
