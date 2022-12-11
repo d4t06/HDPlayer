@@ -8,7 +8,7 @@ import { onPauseHandle } from "./handleEvent.js";
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
-const infoHtml =  `<div class="info-header">
+const infoHtml = `<div class="info-header">
 <button class="menu-back-btn">
   <i class="fa-solid fa-chevron-left"></i>
 </button>
@@ -23,58 +23,77 @@ const infoHtml =  `<div class="info-header">
 <div class="main-info">
     
 </div>
-<div class="info-footer">
-          <p>nguyenhuudat &copy</p>
-        </div>
-`
+<h1 class="loading">Loading...</h1>
+
+`;
 
 const menuList = $(".menu-list");
-const myInput = $('#input')
+const myInput = $("#input");
 console.log(myInput);
 const stockMenuList = menuList.innerHTML;
 
-
-
-
-
 const handleLoadImg = () => {
-  const avatar = $('.user-img img');
-  const userOverall = $('.user-overall')
-  const mainInfo = $('.main-info')
+  const avatar = $(".user-img img");
+  const userOverall = $(".user-overall");
+  const mainInfo = $(".main-info");
+  const loading = $('.loading')
   avatar.onload = () => {
-    console.log('img loaded');
+    loading.remove();
+    console.log("img loaded");
     userOverall.innerHTML = `
     <p class="user-name">Nguyen Huu Dat</p>
     <p class="user-jobs">Font-End dev</p>
     <span class="user-graduate">Can Tho University</span>
-    `
+    `;
     mainInfo.innerHTML = `
-    <ul class="info-container">
+    <ul class="info-container ">
     <p class="main-info-title">Basic info:</p>
     <li><span>Age: 20</span></li>
-    <li><span>Email: huudat01234560@gmail.com</span></li>
-    <li><span>Phone: 0977099335</span></li>
-    <li><span>Language: Vietnamese, English</span></li>
+    <li><span>Major: Software Engineering</span></li>
+    <li><span>Languages: Vietnamese, English</span></li>
     </ul>
-    <ul class="info-container">
+    <ul class="info-container separate">
     <p class="main-info-title">Graduate:</p>
     <li><span>Can Tho University</span></li>
-    <li><span>Major: Software Engineering</span></li>
     </ul>
-    <ul class="info-container">
+    <ul class="info-container separate">
     <p class="main-info-title">Skill:</p>
-    <li><span>Git</span></li>
+    <li><span>Github</span></li>
     <li><span>UI, UX Design</span></li>
     <li><span>Fusion Team Work</span></li>
     </ul>
+    <ul class="info-container separate">
+    <p class="main-info-title">Contact me</p>
+    <li class="social-item">
+    <a href="#">
+    <i class="fa-brands fa-facebook social-icon"></i>
+    Facebook
+    </a>
+    </li>
+    <li class="social-item">
+    <a href="#">
+    <i class="fa-solid fa-envelope social-icon"></i>
+    Email
+    </a>
+    </li>
+    <li class="social-item">
+    <a href="#">
+    <i class="fa-brands fa-github social-icon"></i>
+    Github
+    </a>
+    </li>
+    </ul>
     
     <div class="user-contact">
-      <i class="fa-brands fa-facebook"></i>
-      <i class="fa-brands fa-github"></i>
-      <i class="fa-solid fa-envelope"></i>
-    </div>`
-  }
-}
+      
+      
+      
+    </div>
+    <div class="info-footer">
+          <p>nguyenhuudat &copy</p>
+        </div>`;
+  };
+};
 
 export const HandleGoBack = (_this) => {
   let goBackBtn = $(".menu-back-btn");
@@ -89,25 +108,25 @@ const handleCLick = (_this) => {
   // console.log('handle menu');
   const switchBtn = $(".switch");
   const songListSelect = $("#songListSelect");
-  const toggleInfoBtn = $(".toggle-info")
+  const toggleInfoBtn = $(".toggle-info");
   const player = $(".player");
 
   myInput.onchange = () => {
     if (!myInput.checked) {
-      console.log('unchecked');
+      console.log("unchecked");
       menuList.innerHTML = stockMenuList;
       handleCLick(_this);
     }
-  }
+  };
   // console.log(stockMenuList);
-  _this.loadConfig()
+  _this.loadConfig();
   _this.setSettings();
 
   // info
   toggleInfoBtn.onclick = (e) => {
     menuList.innerHTML = infoHtml;
-  HandleGoBack(_this);
-  handleLoadImg ()
+    HandleGoBack(_this);
+    handleLoadImg();
   };
 
   // dark mode
@@ -128,7 +147,7 @@ const handleCLick = (_this) => {
     };
     switch (e.target.value) {
       case "pmq":
-      _this.songs = songs1;
+        _this.songs = songs1;
         _this.setConfig("lastPlayList", "songs1");
 
         break;
@@ -142,9 +161,7 @@ const handleCLick = (_this) => {
         break;
     }
     loadSongs();
-};
-
-
+  };
 };
 const handleMenu = function () {
   const _this = this;

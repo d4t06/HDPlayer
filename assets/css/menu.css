@@ -149,7 +149,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 12px;
+  /* gap: 12px; */
 
 }
 .user-img {
@@ -162,11 +162,15 @@
   object-fit: cover;
   object-position: center;
   border-radius: 50%;
+  border: 2px solid var(--primary-color);
+}
+.user-overall {
+  margin-top: 20px;
 }
 .user-name {
   font-size: 1.8rem;
   font-weight: 600;
-  color: #000;
+  /* color: #000; */
 }
 .user-jobs {
   font-size: 1.6rem;
@@ -181,6 +185,20 @@
   margin-top: 20px;
   font-size: 2rem;
 }
+.social-item {
+  display: flex;
+  align-items: center;
+}
+.social-icon {
+  font-size: 2rem;
+  width: 40px;
+}
+.fa-facebook {
+  color: #4267B2;
+}
+.fa-envelope {
+  color: rgb(231, 20, 20);
+}
 .main-info {
   padding: 0 10px;
   font-size: 1.4rem;
@@ -194,10 +212,13 @@
 }
 .main-info li {
   list-style: none;
-  padding: 2px 0;
+  padding: 3px 0;
 }
 .info-container {
-  margin-top: 20px;
+  padding: 15px 0;
+}
+.separate {
+  border-top: 1px solid #999;
 }
 .info-container:first-child {
   margin-top: 0;

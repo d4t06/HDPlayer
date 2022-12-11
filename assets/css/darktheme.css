@@ -33,3 +33,19 @@
 .player.dark .pause-icon {
   color: black;
 }
+
+/* menu */
+.player.dark ~ .menu .menu-header {
+  background-color: #333;
+  color: #fff;
+}
+.player.dark ~ .menu .menu-body {
+  background-color: #222;
+  color: #fff;
+}
+.player.dark ~.menu .separate {
+  border-color:rgb(243, 88, 88);
+}
+.player.dark ~.menu .user-jobs {
+  color: rgb(243, 88, 88);
+}
