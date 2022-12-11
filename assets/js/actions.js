@@ -1,13 +1,11 @@
-import {
-  songlist,
-} from "./constant.js";
+import { songlist } from "./constant.js";
 import { menu } from "./menu.js";
 import songs1 from "./songs1.js";
 import songs2 from "./songs2.js";
 
 const songs = {
   songs1,
-  songs2
+  songs2,
 };
 
 const $ = document.querySelector.bind(document);
@@ -92,21 +90,23 @@ export const setSettings = function () {
   const songListSelect = $("#songListSelect");
   const switchBtn = $(".switch");
   const randomBtn = $(".random-btn");
-  const rePeatBtn = $(".repeat-btn");  
+  const rePeatBtn = $(".repeat-btn");
   const player = $(".player");
-  
+
   // cấu hình trình phát
-  randomBtn.classList.toggle("active", this.isRandom);
-  rePeatBtn.classList.toggle("active", this.isRepeat);
+  randomBtn.classList.toggle("active", this.isRandom ? this.isRandom : false);
+  rePeatBtn.classList.toggle("active", this.isRepeat ? this.isRepeat : false);
   //cấu hình dark mode
-  player.classList.toggle("dark", this.isDark);
+  player.classList.toggle("dark", this.isDark ? this.isDark : false);
   // console.log(switchBtn);
   switchBtn.classList.toggle("dark", this.isDark);
   // console.log(switchBtn);
 
   // cấu hình option playlist
-  const option = this.lastPlayList[this.lastPlayList.length - 1];
-
+  const option = this.lastPlayList
+    ? this.lastPlayList[this.lastPlayList.length - 1]
+    : 0;
+  console.log(songListSelect, option, this.lastPlayList);
   songListSelect.options[option].selected = true;
 };
 export const renderMenu = function () {
