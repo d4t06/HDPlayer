@@ -1,10 +1,5 @@
 import {
   songlist,
-  randomBtn,
-  rePeatBtn,
-  player,
-  switchBtn,
-  songListSelect
 } from "./constant.js";
 import { menu } from "./menu.js";
 import songs1 from "./songs1.js";
@@ -94,17 +89,23 @@ export const loadCurrentSong = function () {
   document.title = this.songs[this.currentIndex].name;
 };
 export const setSettings = function () {
-  console.log("set settings");
-
+  const songListSelect = $("#songListSelect");
+  const switchBtn = $(".switch");
+  const randomBtn = $(".random-btn");
+  const rePeatBtn = $(".repeat-btn");  
+  const player = $(".player");
+  
   // cấu hình trình phát
   randomBtn.classList.toggle("active", this.isRandom);
   rePeatBtn.classList.toggle("active", this.isRepeat);
   //cấu hình dark mode
   player.classList.toggle("dark", this.isDark);
+  // console.log(switchBtn);
   switchBtn.classList.toggle("dark", this.isDark);
+  // console.log(switchBtn);
+
   // cấu hình option playlist
   const option = this.lastPlayList[this.lastPlayList.length - 1];
-  console.log(option);
 
   songListSelect.options[option].selected = true;
 };
