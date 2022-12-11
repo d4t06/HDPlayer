@@ -76,6 +76,8 @@
   position: relative;
   height: calc(100% - 50px);
   padding: 15px 13px;
+  overflow: auto;
+
 }
 /* .menu-list {
   height: 0;
@@ -115,11 +117,11 @@
   border-radius: 50px;
   margin-left: auto;
 }
-.menu-footer {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 13px;
+.info-footer {
+  /* position: absolute; */
+  /* left: 0; */
+  /* right: 0; */
+  /* bottom: 13px; */
   text-align: center;
   font-size: 1.2rem;
   font-style: italic;
@@ -148,6 +150,7 @@
   justify-content: center;
   align-items: center;
   gap: 12px;
+
 }
 .user-img {
   width: 150px;
@@ -177,4 +180,25 @@
   text-align: center;
   margin-top: 20px;
   font-size: 2rem;
+}
+.main-info {
+  padding: 0 10px;
+  font-size: 1.4rem;
+  font-weight: 400;
+  text-align: left;
+  margin-top: 20px;
+}
+.main-info-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+.main-info li {
+  list-style: none;
+  padding: 2px 0;
+}
+.info-container {
+  margin-top: 20px;
+}
+.info-container:first-child {
+  margin-top: 0;
 }

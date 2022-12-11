@@ -18,23 +18,56 @@ const infoHtml =  `<div class="info-header">
 <div class="user-img">
   <img src="./assets/images/myavatar.jpg" alt="" />
 </div>
-<div class="user-info">
-
+<div class="user-overall">
 </div>
+<div class="main-info">
+    
 </div>
+<div class="info-footer">
+          <p>nguyenhuudat &copy</p>
+        </div>
 `
+
 const menuList = $(".menu-list");
+const myInput = $('#input')
+console.log(myInput);
 const stockMenuList = menuList.innerHTML;
+
+
+
+
 
 const handleLoadImg = () => {
   const avatar = $('.user-img img');
-  const userInfo = $('.user-info')
+  const userOverall = $('.user-overall')
+  const mainInfo = $('.main-info')
   avatar.onload = () => {
     console.log('img loaded');
-    userInfo.innerHTML = `
+    userOverall.innerHTML = `
     <p class="user-name">Nguyen Huu Dat</p>
     <p class="user-jobs">Font-End dev</p>
     <span class="user-graduate">Can Tho University</span>
+    `
+    mainInfo.innerHTML = `
+    <ul class="info-container">
+    <p class="main-info-title">Basic info:</p>
+    <li><span>Age: 20</span></li>
+    <li><span>Email: huudat01234560@gmail.com</span></li>
+    <li><span>Phone: 0977099335</span></li>
+    <li><span>Language: Vietnamese, English</span></li>
+    </ul>
+    <ul class="info-container">
+    <p class="main-info-title">Graduate:</p>
+    <li><span>Can Tho University</span></li>
+    <li><span>Major: Software Engineering</span></li>
+    </ul>
+    <ul class="info-container">
+    <p class="main-info-title">Skill:</p>
+    <li><span>Git</span></li>
+    <li><span>UI, UX Design</span></li>
+    <li><span>Fusion Team Work</span></li>
+    </ul>
+    
     <div class="user-contact">
       <i class="fa-brands fa-facebook"></i>
       <i class="fa-brands fa-github"></i>
@@ -58,8 +91,17 @@ const handleCLick = (_this) => {
   const songListSelect = $("#songListSelect");
   const toggleInfoBtn = $(".toggle-info")
   const player = $(".player");
-  _this.setSettings();
 
+  myInput.onchange = () => {
+    if (!myInput.checked) {
+      console.log('unchecked');
+      menuList.innerHTML = stockMenuList;
+      handleCLick(_this);
+    }
+  }
+  // console.log(stockMenuList);
+  _this.loadConfig()
+  _this.setSettings();
 
   // info
   toggleInfoBtn.onclick = (e) => {
