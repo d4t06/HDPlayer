@@ -77,7 +77,6 @@
   height: calc(100% - 50px);
   padding: 15px 13px;
   overflow: auto;
-
 }
 /* .menu-list {
   height: 0;
@@ -132,6 +131,17 @@
     opacity: 1;
   }
 }
+@keyframes skeleton {
+  0% {
+    background-color: #fff;
+  }
+  100% {
+    background-color: #ccc;
+  }
+}
+.skeleton {
+  animation: skeleton 1s linear infinite alternate;
+}
 
 /* info */
 .info-header {
@@ -150,11 +160,11 @@
   justify-content: center;
   align-items: center;
   /* gap: 12px; */
-
 }
 .user-img {
   width: 150px;
   height: 150px;
+  border-radius: 50%;
 }
 .user-img img {
   height: 100%;
@@ -194,7 +204,7 @@
   width: 40px;
 }
 .fa-facebook {
-  color: #4267B2;
+  color: #4267b2;
 }
 .fa-envelope {
   color: rgb(231, 20, 20);

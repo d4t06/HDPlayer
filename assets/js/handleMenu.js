@@ -15,7 +15,7 @@ const infoHtml = `<div class="info-header">
 <span class="menu-title">Info</span>
 </div>
 <div class="info">
-<div class="user-img">
+<div class="user-img skeleton">
   <img src="./assets/images/myavatar.jpg" alt="" />
 </div>
 <div class="user-overall">
@@ -36,9 +36,11 @@ const handleLoadImg = () => {
   const avatar = $(".user-img img");
   const userOverall = $(".user-overall");
   const mainInfo = $(".main-info");
-  const loading = $('.loading')
+  const loading = $(".loading");
+  const userImg = $(".user-img");
   avatar.onload = () => {
     loading.remove();
+    userImg.classList.remove("skeleton");
     console.log("img loaded");
     userOverall.innerHTML = `
     <p class="user-name">Nguyen Huu Dat</p>
