@@ -29,7 +29,7 @@ const infoHtml = `<div class="info-header">
 
 const menuList = $(".menu-list");
 const myInput = $("#input");
-console.log(myInput);
+// console.log(myInput);
 const stockMenuList = menuList.innerHTML;
 
 const handleLoadImg = () => {
@@ -103,26 +103,29 @@ export const HandleGoBack = (_this) => {
 
   goBackBtn.onclick = () => {
     menuList.innerHTML = stockMenuList;
-    handleCLick(_this);
+    handleMenuEvents(_this);
   };
 };
-const handleCLick = (_this) => {
+const handleMenuEvents = (_this) => {
   // console.log('handle menu');
   const switchBtn = $(".switch");
   const songListSelect = $("#songListSelect");
   const toggleInfoBtn = $(".toggle-info");
   const player = $(".player");
 
+  // load cac cai dat cua menu
+  _this.setSettings();
+
   myInput.onchange = () => {
     if (!myInput.checked) {
-      console.log("unchecked");
+      console.log("unchecked handle menu events");
       menuList.innerHTML = stockMenuList;
-      handleCLick(_this);
+      handleMenuEvents(_this);
     }
   };
   // console.log(stockMenuList);
-  _this.loadConfig();
-  _this.setSettings();
+
+  // _this.loadConfig();
 
   // info
   toggleInfoBtn.onclick = (e) => {
@@ -133,6 +136,7 @@ const handleCLick = (_this) => {
 
   // dark mode
   switchBtn.onclick = () => {
+    // gan lai bien global
     _this.isDark = !_this.isDark;
     _this.setConfig("isDark", _this.isDark);
     switchBtn.classList.toggle("dark", _this.isDark);
@@ -142,6 +146,10 @@ const handleCLick = (_this) => {
   songListSelect.onchange = (e) => {
     const loadSongs = () => {
       onPauseHandle(_this);
+      // gan lai bien global
+      _this.lastPlayList = _this.config.lastPlayList;
+      _this.currentIndex = 0;
+      console.log(_this.currentIndex);
       _this.updatePath();
       _this.render();
       _this.loadCurrentSong();
@@ -167,7 +175,7 @@ const handleCLick = (_this) => {
 };
 const handleMenu = function () {
   const _this = this;
-  handleCLick(_this);
+  handleMenuEvents(_this);
 };
 
 export default handleMenu;

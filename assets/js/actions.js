@@ -3,7 +3,7 @@ import { menu } from "./menu.js";
 import songs1 from "./songs1.js";
 import songs2 from "./songs2.js";
 
-const songs = {
+const songsPlayList = {
   songs1,
   songs2,
 };
@@ -12,6 +12,7 @@ const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
 export const updatePath = function () {
+  console.log("update patch");
   let toDay = new Date().getDay();
   let newSongs = this.songs.map((song) => {
     return { ...song, path: song.path.replace("/1/", `/${toDay}/`) };
@@ -28,10 +29,13 @@ export const loadConfig = function () {
   this.isRandom = this.config.isRandom;
   this.isRepeat = this.config.isRepeat;
   this.isDark = this.config.isDark;
-  if (this.config.lastPlayList) {
-    this.lastPlayList = this.config.lastPlayList;
-    if (this.config.lastPlayList !== "songs0")
-      this.songs = songs[this.config.lastPlayList];
+
+  const newPlaylist = this.config.lastPlayList;
+
+  if (newPlaylist) {
+    if (newPlaylist !== "songs0" && newPlaylist != this.lastPlayList)
+      this.lastPlayList = newPlaylist;
+    this.songs = songsPlayList[newPlaylist];
   }
 };
 export const loadSettings = () => {
@@ -84,6 +88,10 @@ export const loadCurrentSong = function () {
   title.textContent = this.songs[this.currentIndex].name;
   cd.style.backgroundImage = `url(${this.songs[this.currentIndex].image})`;
   audio.src = this.songs[this.currentIndex].path;
+  // console.log(this.songs);
+  // console.log(this.songs[this.currentIndex].path);
+  // console.log(this.songs[this.currentIndex]);
+  // console.log(this.songs[this.currentIndex].path);
   document.title = this.songs[this.currentIndex].name;
 };
 export const setSettings = function () {
@@ -92,6 +100,8 @@ export const setSettings = function () {
   const randomBtn = $(".random-btn");
   const rePeatBtn = $(".repeat-btn");
   const player = $(".player");
+
+  // console.log(this.lastPlayList, this.isDark);
 
   // cấu hình trình phát
   randomBtn.classList.toggle("active", this.isRandom ? this.isRandom : false);
@@ -106,7 +116,6 @@ export const setSettings = function () {
   const option = this.lastPlayList
     ? this.lastPlayList[this.lastPlayList.length - 1]
     : 0;
-  console.log(songListSelect, option, this.lastPlayList);
   songListSelect.options[option].selected = true;
 };
 export const renderMenu = function () {
