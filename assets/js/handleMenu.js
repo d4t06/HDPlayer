@@ -64,36 +64,26 @@ const handleLoadImg = () => {
     <li><span>UI, UX Design</span></li>
     <li><span>Fusion Team Work</span></li>
     </ul>
-    <ul class="info-container separate">
-    <p class="main-info-title">Contact me</p>
-    <li class="social-item">
+
+    <div class="contact">
+
     <a href="#">
     <i class="fa-brands fa-facebook social-icon"></i>
-    Facebook
+    
     </a>
-    </li>
-    <li class="social-item">
+    
     <a href="#">
-    <i class="fa-solid fa-envelope social-icon"></i>
-    Email
+    <i class="fa-solid fa-envelope social-icon"></i>  
+    
     </a>
-    </li>
-    <li class="social-item">
+    
     <a href="#">
     <i class="fa-brands fa-github social-icon"></i>
-    Github
-    </a>
-    </li>
-    </ul>
     
-    <div class="user-contact">
-      
-      
-      
+    </a>
+
     </div>
-    <div class="info-footer">
-          <p>nguyenhuudat &copy</p>
-        </div>`;
+`;
   };
 };
 

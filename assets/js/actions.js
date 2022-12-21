@@ -13,6 +13,7 @@ const $$ = document.querySelectorAll.bind(document);
 
 export const updatePath = function () {
   console.log("update patch");
+  console.log(this.songs);
   let toDay = new Date().getDay();
   let newSongs = this.songs.map((song) => {
     return { ...song, path: song.path.replace("/1/", `/${toDay}/`) };
@@ -33,9 +34,10 @@ export const loadConfig = function () {
   const newPlaylist = this.config.lastPlayList;
 
   if (newPlaylist) {
-    if (newPlaylist !== "songs0" && newPlaylist != this.lastPlayList)
+    if (newPlaylist !== "songs0" && newPlaylist != this.lastPlayList) {
       this.lastPlayList = newPlaylist;
-    this.songs = songsPlayList[newPlaylist];
+      this.songs = songsPlayList[newPlaylist];
+    }
   }
 };
 export const loadSettings = () => {

@@ -43,9 +43,15 @@
   background-color: #222;
   color: #fff;
 }
-.player.dark ~.menu .separate {
-  border-color:rgb(243, 88, 88);
+.player.dark ~ .menu .separate {
+  border-color: rgb(243, 88, 88);
 }
-.player.dark ~.menu .user-jobs {
+.player.dark ~ .menu .user-jobs {
   color: rgb(243, 88, 88);
+}
+.player.dark ~ .social-icon {
+  color: rgba(255 255, 255, 0.5);
+}
+.player.dark ~ .social-icon:hover {
+  color: #fff;
 }
