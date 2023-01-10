@@ -2,6 +2,7 @@
 import songs0 from "./songs.js";
 import songs1 from "./songs1.js";
 import songs2 from "./songs2.js";
+import songs3 from "./songs3.js";
 import { onPauseHandle } from "./handleEvent.js";
 // import { setSettings } from "./actions.js";
 
@@ -154,6 +155,10 @@ const handleMenuEvents = (_this) => {
       case "ngocmai":
         _this.songs = songs2;
         _this.setConfig("lastPlayList", "songs2");
+        break;
+      case "tet":
+        _this.songs = songs3;
+        _this.setConfig("lastPlayList", "songs3");
         break;
       default:
         _this.songs = songs0;
