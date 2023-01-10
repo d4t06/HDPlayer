@@ -2,10 +2,12 @@ import { songlist } from "./constant.js";
 import { menu } from "./menu.js";
 import songs1 from "./songs1.js";
 import songs2 from "./songs2.js";
+import songs3 from "./songs3.js";
 
 const songsPlayList = {
   songs1,
   songs2,
+  songs3,
 };
 
 const $ = document.querySelector.bind(document);
