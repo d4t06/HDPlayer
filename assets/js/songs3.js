@@ -8,9 +8,16 @@ const songs3 = [
   {
     name: "Tết Đông Đầy",
     singer: "Kay Trần; Nguyễn Khoa",
-    path: "https://data33.chiasenhac.com/downloads/1989/2/1988931-3c0e1e4c/128/Tet%20Dong%20Day%20-%20Kay%20Tran_%20Nguyen%20Khoa.mp3",
+    path: "https://data33.chiasenhac.com/downloads/1989/1/1988931-3c0e1e4c/128/Tet%20Dong%20Day%20-%20Kay%20Tran_%20Nguyen%20Khoa.mp3",
     image: "https://data.chiasenhac.com/data/cover/100/99667.jpg",
   },
+  {
+    name: "We Own The Night",
+    singer: "The Wanted",
+    path: "https://data56.chiasenhac.com/downloads/1167/1/1166056-ce007c66/128/We%20Own%20The%20Night%20-%20The%20Wanted.mp3",
+    image: "https://data.chiasenhac.com/data/cover/100/99667.jpg",
+  },
+  
 ];
 
 export default songs3;
