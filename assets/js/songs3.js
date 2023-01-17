@@ -17,7 +17,46 @@ const songs3 = [
     path: "https://data56.chiasenhac.com/downloads/1167/1/1166056-ce007c66/128/We%20Own%20The%20Night%20-%20The%20Wanted.mp3",
     image: "https://data.chiasenhac.com/data/cover/100/99667.jpg",
   },
-  
+  {
+    name: "A Sky Full Of Star",
+    singer: "Coldplay",
+    path: "https://data60.chiasenhac.com/downloads/1276/1/1275927-ca2323e6/128/A%20Sky%20Full%20Of%20Stars%20-%20Coldplay.mp3",
+    image: "https://data.chiasenhac.com/data/cover/22/21309.jpg",
+  },
+  {
+    name: "Sugar",
+    singer: "Maroon 5",
+    path: "https://data62.chiasenhac.com/downloads/1349/1/1348625-00a323af/128/Sugar%20-%20Maroon%205.mp3",
+    image: "/assets/images/20220911_121743.jpg",
+  },
+  {
+    name: "You And I",
+    singer: "Huu Dat & Ngoc Mai",
+    path:
+      "https://data56.chiasenhac.com/downloads/1176/1/1175158-9e3c33b1/128/You%20And%20I%20-%20One%20Direction.mp3",
+    image: "/assets/images/928D197B-717F-4A89-AB80-1819026B4168.jpeg"
+  },
+  {
+    name: "Perfect",
+    singer: "Ed Sheeran",
+    path: "https://data17.chiasenhac.com/downloads/2153/1/2152901-c30ec5b5/128/Perfect%20-%20Ed%20Sheeran.mp3",
+    image: "/assets/images/IMG_20220913_230034.jpg",
+  },
+  {
+    name: "Take Me To Infinity",
+    singer: "Consoul Trainin",
+    path: "https://data33.chiasenhac.com/downloads/1982/1/1981352-36a0c162/128/Take%20Me%20To%20Infinity%20-%20Consoul%20Trainin.mp3",
+
+    image: "https://data.chiasenhac.com/data/cover/99/98399.jpg",
+  },
+  {
+    name: "Happy",
+    singer: "Pharrell Williams",
+    path:
+      "https://data55.chiasenhac.com/downloads/1126/1/1125984-4f2f6037/128/Happy%20-%20Pharrell%20Williams.mp3",
+
+    image: "https://data.chiasenhac.com/data/cover/9/8801.jpg"
+  },
 ];
 
 export default songs3;
