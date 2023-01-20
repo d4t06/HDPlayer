@@ -6,6 +6,18 @@ const songs3 = [
     image: "https://data.chiasenhac.com/data/cover/152/151036.jpg",
   },
   {
+    name: "Liên Khúc Xuân 2012",
+    singer: "Nhiều ca sĩ",
+    path: "/assets/songs/lienkhucxuan2012.mp3",
+    image: "https://data.chiasenhac.com/data/cover/152/151036.jpg",
+  },
+  {
+    name: "Mùa Xuân Vui",
+    singer: "Quách Tuấn Du",
+    path: "assets/songs/muaxuanvui.mp3",
+    image: "https://data.chiasenhac.com/data/cover/152/151036.jpg",
+  },
+  {
     name: "Tết Đông Đầy",
     singer: "Kay Trần; Nguyễn Khoa",
     path: "https://data33.chiasenhac.com/downloads/1989/1/1988931-3c0e1e4c/128/Tet%20Dong%20Day%20-%20Kay%20Tran_%20Nguyen%20Khoa.mp3",
