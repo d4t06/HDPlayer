@@ -24,18 +24,6 @@ const songs3 = [
     image: "https://data.chiasenhac.com/data/cover/100/99667.jpg",
   },
   {
-    name: "We Own The Night",
-    singer: "The Wanted",
-    path: "https://data56.chiasenhac.com/downloads/1167/1/1166056-ce007c66/128/We%20Own%20The%20Night%20-%20The%20Wanted.mp3",
-    image: "https://data.chiasenhac.com/data/cover/12/11830.jpg",
-  },
-  {
-    name: "A Sky Full Of Star",
-    singer: "Coldplay",
-    path: "https://data60.chiasenhac.com/downloads/1276/1/1275927-ca2323e6/128/A%20Sky%20Full%20Of%20Stars%20-%20Coldplay.mp3",
-    image: "https://data.chiasenhac.com/data/cover/22/21309.jpg",
-  },
-  {
     name: "Sugar",
     singer: "Maroon 5",
     path: "https://stream.nixcdn.com/Unv_Audio73/Sugar-Maroon5-3338455.mp3",
@@ -46,34 +34,6 @@ const songs3 = [
     singer: "Maroon 5",
     path: "https://stream.nixcdn.com/NhacCuaTui1004/WhatLoversDoLjxn239DiuzRemix-Maroon5-6727902.mp3",
     image: "https://avatar-ex-swe.nixcdn.com/song/2018/06/22/0/c/c/b/1529655970762_500.jpg",
-  },
-  {
-    name: "You And I",
-    singer: "Huu Dat & Ngoc Mai",
-    path:
-      "https://data56.chiasenhac.com/downloads/1176/1/1175158-9e3c33b1/128/You%20And%20I%20-%20One%20Direction.mp3",
-    image: "https://data.chiasenhac.com/data/cover/13/12809.jpg"
-  },
-  {
-    name: "Perfect",
-    singer: "Ed Sheeran",
-    path: "https://data17.chiasenhac.com/downloads/2153/1/2152901-c30ec5b5/128/Perfect%20-%20Ed%20Sheeran.mp3",
-    image: "https://data.chiasenhac.com/data/cover/120/119595.jpg",
-  },
-  {
-    name: "Take Me To Infinity",
-    singer: "Consoul Trainin",
-    path: "https://data33.chiasenhac.com/downloads/1982/1/1981352-36a0c162/128/Take%20Me%20To%20Infinity%20-%20Consoul%20Trainin.mp3",
-
-    image: "https://data.chiasenhac.com/data/cover/99/98399.jpg",
-  },
-  {
-    name: "Happy",
-    singer: "Pharrell Williams",
-    path:
-      "https://data55.chiasenhac.com/downloads/1126/1/1125984-4f2f6037/128/Happy%20-%20Pharrell%20Williams.mp3",
-
-    image: "https://data.chiasenhac.com/data/cover/9/8801.jpg"
   },
 ];
 
