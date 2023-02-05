@@ -38,8 +38,14 @@ const songs3 = [
   {
     name: "Sugar",
     singer: "Maroon 5",
-    path: "https://data62.chiasenhac.com/downloads/1349/1/1348625-00a323af/128/Sugar%20-%20Maroon%205.mp3",
-    image: "https://data.chiasenhac.com/data/cover/29/28216.jpg",
+    path: "https://stream.nixcdn.com/Unv_Audio73/Sugar-Maroon5-3338455.mp3",
+    image: "https://avatar-ex-swe.nixcdn.com/song/2018/06/22/0/c/c/b/1529655970762_500.jpg",
+  },
+  {
+    name: "What Lovers Do",
+    singer: "Maroon 5",
+    path: "https://stream.nixcdn.com/NhacCuaTui1004/WhatLoversDoLjxn239DiuzRemix-Maroon5-6727902.mp3",
+    image: "https://avatar-ex-swe.nixcdn.com/song/2018/06/22/0/c/c/b/1529655970762_500.jpg",
   },
   {
     name: "You And I",
