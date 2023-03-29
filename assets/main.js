@@ -1,4 +1,4 @@
-import songs from "./js/songs.js";
+import {temporarySongs} from "./js/temporarySongs.js";
 import { LOCALSTORAGE_KEY } from "./js/constant.js";
 import handlEvents from "./js/handleEvent.js";
 import {
@@ -26,7 +26,7 @@ const app = {
   lastPlayList: "",
   config: JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY)) || {},
   //songs
-  songs: songs,
+  songs: temporarySongs,
   setConfig: function (key, value) {
     this.config[key] = value;
     localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(this.config));
@@ -62,7 +62,7 @@ const app = {
   start: function () {
     this.loadConfig();
 
-    this.updatePath();
+    // this.updatePath();
 
     // this.sortSongs();
 

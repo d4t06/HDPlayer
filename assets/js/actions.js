@@ -50,7 +50,7 @@ export const render = function () {
   this.songs.map((song, index) => {
     html += `<li class="song-item" id="${index}">
           <div class="song-frame">
-            <div class="song-img" style="background-image: url(./assets/images/myavatar.jpg)" >
+            <div class="song-img" style="background-image: url(${song.image})" >
             </div>
           </div>
           <div class="song-info">

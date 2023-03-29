@@ -9,16 +9,14 @@ import {
   rePeatBtn,
   player,
   musicVolume,
-  switchBtn,
   gotopBtn,
   timeSlider,
   timeSliderCurrent,
   timeSliderHolder,
   volumeSliderCurrent,
   volumeSliderHolder,
-  songListSelect
 } from "./constant.js";
-import { subMenu } from "./menu.js";
+// import { subMenu } from "./menu.js";
 
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
@@ -64,8 +62,11 @@ const handlEvents = function () {
   audio.volume = 1;
 
   // resize the cd when scroll
-  document.onscroll = function () {
+  window.onscroll = function () {
     const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    // const scrollTop = songlist.scrollTop
+
+    // console.log(songlist.scrollTop)
     const newCdWidth = cdWidth - scrollTop / 2;
     // console.log(isHide)
     // if (newCdWidth < 0) {cd.style.width = 0}

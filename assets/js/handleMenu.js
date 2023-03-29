@@ -17,7 +17,7 @@ const infoHtml = `<div class="info-header">
 </div>
 <div class="info">
 <div class="user-img skeleton">
-  <img src="./assets/images/myavatar.jpg" alt="" />
+  <img src="./assets/images/myAvatar.jpg" alt="" />
 </div>
 <div class="user-overall">
 </div>
@@ -45,44 +45,44 @@ const handleLoadImg = () => {
     console.log("img loaded");
     userOverall.innerHTML = `
     <p class="user-name">Nguyen Huu Dat</p>
-    <p class="user-jobs">Font-End dev</p>
-    <span class="user-graduate">Can Tho University</span>
+    <p class="user-jobs">FullStack Developer</p>
     `;
     mainInfo.innerHTML = `
     <ul class="info-container ">
-    <p class="main-info-title">Basic info:</p>
-    <li><span>Age: 20</span></li>
-    <li><span>Major: Software Engineering</span></li>
-    <li><span>Languages: Vietnamese, English</span></li>
+      <p class="main-info-title">Basic info:</p>
+      <li><span>FullName: Nguyễn Hữu Đạt</span></li>
+      <li><span>Birthday: 07/08/2003</span></li>
+      <li><span>Address: Can Tho, Viet Nam</span></li>
+      <li><span>Email: huudat01234560@gmail.com</span></li>
     </ul>
+
     <ul class="info-container separate">
-    <p class="main-info-title">Graduate:</p>
-    <li><span>Can Tho University</span></li>
+      <p class="main-info-title">Graduate:</p>
+      <li><span>Can Tho University</span></li>
+      <li><span>Major: Software Engineering</span></li>
     </ul>
+
     <ul class="info-container separate">
-    <p class="main-info-title">Skill:</p>
-    <li><span>Github</span></li>
-    <li><span>UI, UX Design</span></li>
-    <li><span>Fusion Team Work</span></li>
+      <p class="main-info-title">Skill:</p>
+      <li><span>HTML, CSS, JavaScript (React JS, Vue JS)</span></li>
+      <li><span>Node (ExpressJS)</span></li>
+      <li><span>MySQL, NoSQL (MongoDB)</span></li>
+      <li>Github</span></li>
+      <li><span>English</span></li>
     </ul>
 
     <div class="contact">
-
-    <a href="#">
+    <a href="https://facebook.com/DAtdz06" target="_blank">
     <i class="fa-brands fa-facebook social-icon"></i>
-    
     </a>
     
-    <a href="#">
-    <i class="fa-solid fa-envelope social-icon"></i>  
-    
+    <a href="https://www.linkedin.com/in/dat-nguyen-9371a926a" target="_blank">
+    <i class="fa-brands fa-linkedin social-icon"></i>
     </a>
     
-    <a href="#">
+    <a href="https://github.com/d4t06" target="_blank">
     <i class="fa-brands fa-github social-icon"></i>
-    
     </a>
-
     </div>
 `;
   };

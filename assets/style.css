@@ -14,6 +14,9 @@ a {
 html {
   font-size: 62.5%;
 }
+.player{
+  min-width: 450px;
+}
 .dashboard {
   display: flex;
   flex-direction: column;
@@ -21,10 +24,11 @@ html {
   background-color: #fff;
   padding: 16px 14px 16px;
   width: 100%;
+  min-width: 450px;
+  border-bottom: 8px solid #e1e1e1;
   position: fixed;
   top: 0;
   left: 0;
-  border-bottom: 4px solid #e1e1e1;
 }
 .dashboard h4 {
   font-size: 1.3rem;
@@ -110,7 +114,6 @@ html {
 }
 
 .duration::-moz-range-thumb {
-  /* box-shadow: -200px 0 0 200px rgb(243, 88, 88); */
   background-color: #999;
   border: none;
   width: 15px;
@@ -119,14 +122,12 @@ html {
 }
 
 .playlist {
-  /* height: 100vh; */
+  padding-top: 366px;
   background-color: #e1e1e1;
-  padding-top: 360px;
+  min-height: 100vh;
 }
 .song-list {
   padding: 10px 7px 10px;
-  /* height: 200px;
-  overflow: auto; */
 }
 .song-item {
   padding: 5px;
