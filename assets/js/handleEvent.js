@@ -84,6 +84,17 @@ const handlEvents = function () {
     gotopBtn.classList.toggle("show", scrollTop > 400);
   };
 
+  // listen space key
+  if (isDesktop) {
+    window.addEventListener('keydown', (e) => {
+      e.preventDefault();
+  
+      if (e.key === " ") {
+        playBtn.click();
+      }
+    })
+  }
+
   // play song
   function playSong() {
     audio.play();
