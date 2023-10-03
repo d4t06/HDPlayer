@@ -1,176 +1,140 @@
-// import { menu } from "./menu.js";
-import songs0 from "./songs.js";
-import songs1 from "./songs1.js";
-import songs2 from "./songs2.js";
-import songs3 from "./songs3.js";
+import { setLocalStorage } from "../../utils/appHelper.js";
 import { onPauseHandle } from "./handleEvent.js";
-// import { setSettings } from "./actions.js";
 
 const $ = document.querySelector.bind(document);
-const $$ = document.querySelectorAll.bind(document);
 
-const infoHtml = `<div class="info-header">
-<button class="menu-back-btn">
-  <i class="fa-solid fa-chevron-left"></i>
-</button>
-<span class="menu-title">Info</span>
-</div>
-<div class="info">
-<div class="user-img skeleton">
-  <img src="./assets/images/myAvatar.jpg" alt="" />
-</div>
-<div class="user-overall">
-</div>
-<div class="main-info">
-    
-</div>
-<h1 class="loading">Loading...</h1>
+const level2 = $(".level2");
+const level2Content = $(".level2-content");
 
-`;
+const subMenuList = {
+   info: `<div class="info-header">
+  <button class="menu-back-btn">
+  <svg
+  xmlns="http://www.w3.org/2000/svg"
+  fill="none"
+  viewBox="0 0 24 24"
+  stroke-width="1.5"
+  stroke="currentColor"
+  width="25px"
+>
+  <path
+     stroke-linecap="round"
+     stroke-linejoin="round"
+     d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+  />
+</svg>
+  </button>
+  </div><ul class="info-container ">
+  <p class="main-info-title">Basic info:</p>
+  <li><span>FullName: Nguyễn Hữu Đạt</span></li>
+  <li><span>Birthday: 07/08/2003</span></li>
+  <li><span>Address: Can Tho, Viet Nam</span></li>
+  <li><span>Email: huudat01234560@gmail.com</span></li>
+</ul>
 
-const menuList = $(".menu-list");
-const myInput = $("#input");
-// console.log(myInput);
-const stockMenuList = menuList.innerHTML;
+<ul class="info-container separate">
+  <p class="main-info-title">Graduate:</p>
+  <li><span>Can Tho University</span></li>
+  <li><span>Major: Software Engineering</span></li>
+</ul>
 
-const handleLoadImg = () => {
-  const avatar = $(".user-img img");
-  const userOverall = $(".user-overall");
-  const mainInfo = $(".main-info");
-  const loading = $(".loading");
-  const userImg = $(".user-img");
-  avatar.onload = () => {
-    loading.remove();
-    userImg.classList.remove("skeleton");
-    console.log("img loaded");
-    userOverall.innerHTML = `
-    <p class="user-name">Nguyen Huu Dat</p>
-    <p class="user-jobs">FullStack Developer</p>
-    `;
-    mainInfo.innerHTML = `
-    <ul class="info-container ">
-      <p class="main-info-title">Basic info:</p>
-      <li><span>FullName: Nguyễn Hữu Đạt</span></li>
-      <li><span>Birthday: 07/08/2003</span></li>
-      <li><span>Address: Can Tho, Viet Nam</span></li>
-      <li><span>Email: huudat01234560@gmail.com</span></li>
-    </ul>
+<ul class="info-container separate">
+  <p class="main-info-title">Skill:</p>
+  <li><span>HTML, CSS, JavaScript (React JS, Vue JS)</span></li>
+  <li><span>Node (ExpressJS)</span></li>
+  <li><span>MySQL, NoSQL (MongoDB)</span></li>
+  <li>Github</span></li>
+  <li><span>English</span></li>
+</ul>
 
-    <ul class="info-container separate">
-      <p class="main-info-title">Graduate:</p>
-      <li><span>Can Tho University</span></li>
-      <li><span>Major: Software Engineering</span></li>
-    </ul>
+<div class="contact">
+<a href="https://facebook.com/DAtdz06" target="_blank">
+<i class="fa-brands fa-facebook social-icon"></i>
+</a>
 
-    <ul class="info-container separate">
-      <p class="main-info-title">Skill:</p>
-      <li><span>HTML, CSS, JavaScript (React JS, Vue JS)</span></li>
-      <li><span>Node (ExpressJS)</span></li>
-      <li><span>MySQL, NoSQL (MongoDB)</span></li>
-      <li>Github</span></li>
-      <li><span>English</span></li>
-    </ul>
+<a href="https://www.linkedin.com/in/dat-nguyen-9371a926a" target="_blank">
+<i class="fa-brands fa-linkedin social-icon"></i>
+</a>
 
-    <div class="contact">
-    <a href="https://facebook.com/DAtdz06" target="_blank">
-    <i class="fa-brands fa-facebook social-icon"></i>
-    </a>
-    
-    <a href="https://www.linkedin.com/in/dat-nguyen-9371a926a" target="_blank">
-    <i class="fa-brands fa-linkedin social-icon"></i>
-    </a>
-    
-    <a href="https://github.com/d4t06" target="_blank">
-    <i class="fa-brands fa-github social-icon"></i>
-    </a>
-    </div>
-`;
-  };
+<a href="https://github.com/d4t06" target="_blank">
+<i class="fa-brands fa-github social-icon"></i>
+</a>
+</div>`,
+   test: "test",
 };
 
 export const HandleGoBack = (_this) => {
-  let goBackBtn = $(".menu-back-btn");
-  // console.log("handle go back");
+   let goBackBtn = $(".menu-back-btn");
 
-  goBackBtn.onclick = () => {
-    menuList.innerHTML = stockMenuList;
-    handleMenuEvents(_this);
-  };
+   goBackBtn.onclick = () => {
+      level2.classList.remove("open");
+   };
 };
+
 const handleMenuEvents = (_this) => {
-  // console.log('handle menu');
-  const switchBtn = $(".switch");
-  const songListSelect = $("#songListSelect");
-  const toggleInfoBtn = $(".toggle-info");
-  const player = $(".player");
+   const switchBtn = $(".switch");
+   const songListSelect = $("#songListSelect");
+   const toggleInfoBtn = $(".toggle-info");
+   const player = $(".player");
 
-  // load cac cai dat cua menu
-  _this.setSettings();
+   // _this.setSettings();
 
-  myInput.onchange = () => {
-    if (!myInput.checked) {
-      console.log("unchecked handle menu events");
-      menuList.innerHTML = stockMenuList;
-      handleMenuEvents(_this);
-    }
-  };
-  // console.log(stockMenuList);
+   // handle open sub menu
+   toggleInfoBtn.onclick = (e) => {
+      const subMenuName = e.target.getAttribute("data-for");
+      // const subMenu = subMenuList[subMenuName];
 
-  // _this.loadConfig();
+      const subMenuEle = $(`.${subMenuName}`)
 
-  // info
-  toggleInfoBtn.onclick = (e) => {
-    menuList.innerHTML = infoHtml;
-    HandleGoBack(_this);
-    handleLoadImg();
-  };
+      if (subMenuEle) {
+         level2.classList.add("open");
+         subMenuEle.style.display = 'block'
+         HandleGoBack();
+      }
+   };
 
-  // dark mode
-  switchBtn.onclick = () => {
-    // gan lai bien global
-    _this.isDark = !_this.isDark;
-    _this.setConfig("isDark", _this.isDark);
-    switchBtn.classList.toggle("dark", _this.isDark);
-    player.classList.toggle("dark", _this.isDark);
-  };
-  // playlist select
-  songListSelect.onchange = (e) => {
-    const loadSongs = () => {
+   // handle on dark mode
+   switchBtn.onclick = () => {
+      const value = !_this.isDark;
+      _this.isDark = value;
+      setLocalStorage("isDark", value);
+
+      switchBtn.classList.toggle("dark", _this.isDark);
+      player.classList.toggle("dark", _this.isDark);
+   };
+
+   // handle select playlist
+   songListSelect.onchange = (e) => {
+      // pause
       onPauseHandle(_this);
-      // gan lai bien global
-      _this.lastPlayList = _this.config.lastPlayList;
+      const playlistName = e.target.value;
+
+      if (playlistName) {
+         const playlist = _this.playlists.find((playlist) => playlist.name === e.target.value);
+         const playlistSongs = getPlaylistSongs(playlist, _this.songs);
+
+         _this.playlistSongs = playlistSongs;
+         _this.song_in = "playlist";
+      } else {
+         _this.song_in = "songs";
+      }
+
       _this.currentIndex = 0;
-      console.log(_this.currentIndex);
-      _this.updatePath();
+      _this.getActuallySongs();
+
       _this.render();
       _this.loadCurrentSong();
-      _this.handlEvents();
-    };
-    switch (e.target.value) {
-      case "pmq":
-        _this.songs = songs1;
-        _this.setConfig("lastPlayList", "songs1");
-
-        break;
-      case "ngocmai":
-        _this.songs = songs2;
-        _this.setConfig("lastPlayList", "songs2");
-        break;
-      case "tet":
-        _this.songs = songs3;
-        _this.setConfig("lastPlayList", "songs3");
-        break;
-      default:
-        _this.songs = songs0;
-        _this.setConfig("lastPlayList", "songs0");
-        break;
-    }
-    loadSongs();
-  };
+      _this.handleEvents();
+   };
 };
+
+const getPlaylistSongs = (playlist, songs) => {
+   return songs.filter((song) => playlist.song_ids.includes(song.id));
+};
+
 const handleMenu = function () {
-  const _this = this;
-  handleMenuEvents(_this);
+   const _this = this;
+   handleMenuEvents(_this);
 };
 
 export default handleMenu;

@@ -1,0 +1,247 @@
+.player .dashboard .openMenu {
+  position: absolute;
+  color: #666;
+  top: 7px;
+  left: 5px;
+  font-size: 2rem;
+  padding: 5px; }
+
+.player .dashboard .volume-slider,
+.player .dashboard .time-slider {
+  height: 9px;
+  width: 95%;
+  margin-top: 15px;
+  position: relative;
+  background-color: #e1e1e1;
+  display: flex;
+  cursor: pointer;
+  border-radius: 5px; }
+  .player .dashboard .volume-slider .current,
+  .player .dashboard .time-slider .current {
+    cursor: pointer;
+    position: relative;
+    background-color: #999;
+    border-radius: 5px;
+    height: 100%; }
+  @media (min-width: 550px) {
+    .player .dashboard .volume-slider,
+    .player .dashboard .time-slider {
+      height: 6px;
+      margin-top: 30px; } }
+
+.player .dashboard .volume-slider .holder {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #f35858;
+  transform: translate(50%, -30%); }
+  .player .dashboard .volume-slider .holder .current-time {
+    display: inline-block;
+    width: 35px; }
+
+.player .dashboard .time-slider .holder {
+  position: absolute;
+  width: 90px;
+  background-color: #f35858;
+  border-radius: 99px;
+  font-size: 12px;
+  padding: 2px 5px;
+  right: 0;
+  top: -7px;
+  color: #fff; }
+
+.player .go-top-btn {
+  display: none;
+  position: fixed;
+  height: 35px;
+  width: 35px;
+  align-items: center;
+  justify-content: center;
+  background-color: #ccc;
+  border-radius: 50%;
+  bottom: 10px;
+  right: 50%;
+  transform: translateX(50%);
+  opacity: 0.6; }
+  .player .go-top-btn.show {
+    display: flex; }
+
+.player.dark ~ .menu .menu-header .closeMenu {
+  color: #999; }
+
+.player.dark ~ .menu .body {
+  background-color: #222; }
+
+.player.dark ~ .menu .level2 {
+  background-color: #222;
+  color: #fff; }
+  .player.dark ~ .menu .level2 .header button {
+    color: #fff; }
+
+#input:checked ~ .modal_overplay {
+  display: block; }
+
+#input:checked ~ .menu {
+  transition: transform linear 0.3s, opacity linear 0.3s;
+  transform: translateX(0%);
+  opacity: 1; }
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 70%;
+  max-width: 350px;
+  opacity: 0.5;
+  transform: translateX(-100%);
+  transition: transform linear 0.15s, opacity linear 0.15s;
+  background: #ffffff;
+  z-index: 2; }
+  .menu .menu-header {
+    padding: 0 15px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15); }
+    .menu .menu-header-user {
+      display: flex;
+      align-items: center; }
+      .menu .menu-header-user .image-frame {
+        height: 45px;
+        width: 45px; }
+      .menu .menu-header-user img {
+        border-radius: 50%;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center; }
+      .menu .menu-header-user h2 {
+        margin-left: 8px; }
+    .menu .menu-header .closeMenu {
+      color: #000;
+      font-size: 2rem;
+      padding: 5px; }
+  .menu .menu-body {
+    position: relative;
+    height: calc(100% - 50px); }
+    .menu .menu-body .list-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      height: 40px;
+      list-style-type: none;
+      font-size: 1.6rem;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 0 15px; }
+      .menu .menu-body .list-item:hover {
+        background-color: rgba(0, 0, 0, 0.1); }
+      .menu .menu-body .list-item span {
+        user-select: none; }
+    .menu .menu-body #songListSelect {
+      display: inline-block;
+      padding: 2px 10px;
+      font-size: 1.4rem;
+      border: none;
+      border-radius: 99px;
+      background: #eeee;
+      margin-left: auto;
+      outline: none;
+      height: 26px; }
+    .menu .menu-body .switch {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-evenly;
+      position: relative;
+      height: 26px;
+      width: 50px;
+      border-radius: 99px;
+      background: #eeee; }
+      .menu .menu-body .switch .sun {
+        color: #f39c12; }
+      .menu .menu-body .switch .moon {
+        color: #f1c40f; }
+      .menu .menu-body .switch::before {
+        content: "";
+        display: block;
+        position: absolute;
+        height: 20px;
+        background-color: #fff;
+        width: 20px;
+        border-radius: 50%;
+        right: 2px;
+        transition: transform 0.2s linear; }
+      .menu .menu-body .switch.dark {
+        background-color: #555; }
+        .menu .menu-body .switch.dark::before {
+          right: unset;
+          transform: translateX(-12px); }
+
+.level2 {
+  overflow: auto; }
+  .level2 .level2-content {
+    padding: 0 10px; }
+    .level2 .level2-content .menu-back-btn {
+      background-color: unset;
+      border: none;
+      padding: 5px;
+      margin-top: 15px; }
+    .level2 .level2-content .info-submenu {
+      display: none; }
+
+.info-submenu {
+  padding-bottom: 60px; }
+  .info-submenu .user-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto; }
+    .info-submenu .user-img img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 50%;
+      border: 2px solid var(--primary-color); }
+  .info-submenu .user-overall {
+    text-align: center;
+    margin-top: 20px; }
+    .info-submenu .user-overall .user-name {
+      font-size: 1.8rem; }
+    .info-submenu .user-overall .user-jobs {
+      font-size: 1.6rem; }
+  .info-submenu .main-info {
+    padding: 0;
+    margin-top: 30px; }
+    .info-submenu .main-info-title {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 10px; }
+    .info-submenu .main-info .group {
+      list-style: none; }
+      .info-submenu .main-info .group.separate {
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px solid rgba(0, 0, 0, 0.1); }
+      .info-submenu .main-info .group li {
+        font-size: 14px;
+        padding-left: 10px; }
+        .info-submenu .main-info .group li span {
+          font-weight: 500;
+          display: inline-block;
+          min-width: 100px; }
+        .info-submenu .main-info .group li + li {
+          margin-top: 5px; }
+  .info-submenu .contact {
+    text-align: center;
+    margin-top: 30px; }
+    .info-submenu .contact a {
+      display: inline-flex;
+      transition: scale linear 0.15 s; }
+      .info-submenu .contact a + a {
+        margin-left: 15px; }
+      .info-submenu .contact a:hover {
+        scale: 1.2; }

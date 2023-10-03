@@ -1,222 +1,259 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap");
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Montserrat", sans-serif;
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: "Montserrat", sans-serif;
 }
 a {
-  text-decoration: none;
-  color: inherit;
+   text-decoration: none;
+   color: inherit;
 }
 :root {
-  --primary-color: rgb(243, 88, 88);
+   --primary-color: rgb(243, 88, 88);
 }
 html {
-  font-size: 62.5%;
+   font-size: 62.5%;
 }
-.player{
-  min-width: 450px;
+.player {
+   /* min-width: 400px; */
 }
 .dashboard {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #fff;
-  padding: 16px 14px 16px;
-  width: 100%;
-  min-width: 450px;
-  border-bottom: 8px solid #e1e1e1;
-  position: fixed;
-  top: 0;
-  left: 0;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   background-color: #fff;
+   padding: 16px 14px 16px;
+   width: 100%;
+   /* min-width: 400px; */
+   border-bottom: 8px solid #e1e1e1;
+   position: fixed;
+   top: 0;
+   left: 0;
+}
+.dashboard .title-wrapper {
+   overflow: hidden;
+   position: relative;
+   height: 30px;
+   width: 90%;
+   -webkit-mask-image: linear-gradient(
+      90deg,
+      hsla(0, 0%, 100%, 0),
+      hsla(0, 0%, 100%, 0.8) 1%,
+      #fff 1%,
+      #fff 99%,
+      hsla(0, 0%, 100%, 0.8) 1%,
+      hsla(0, 0%, 100%, 0)
+   );
 }
 .dashboard h4 {
-  font-size: 1.3rem;
-  font-weight: 500;
-  color: rgb(243, 88, 88);
+   font-size: 1.3rem;
+   font-weight: 500;
+   color: rgb(243, 88, 88);
 }
 .dashboard h2 {
-  width: 80%;
-  font-size: 2.5rem;
-  /* height: 2.5rem; */
-  font-weight: 300;
-  text-align: center;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+   position: absolute;
+   white-space: nowrap;
+   left: 0;
+   min-width: 100%;
+   font-size: 2.5rem;
+   font-weight: 400;
+   text-align: center;
 }
 .cd {
-  width: 200px;
-  display: flex;
-  margin: 10px 0;
+   width: 200px;
+   display: flex;
+   margin: 10px 0;
 }
 .cd-img {
-  padding-top: 100%;
-  background-size: cover;
-  background-position: center;
-  border-radius: 50%;
-  width: 100%;
-  animation: spin 12s linear infinite paused;
+   padding-top: 100%;
+   background-size: cover;
+   background-position: center;
+   border-radius: 50%;
+   width: 100%;
+   animation: spin 12s linear infinite paused;
 }
 .control {
-  display: flex;
-  justify-content: space-between;
-  width: 90%;
+   display: flex;
+   justify-content: space-between;
+   width: 90%;
 }
 .btn {
-  font-size: 1.6rem;
-  color: #666;
-  height: 40px;
-  width: 40px;
-  text-align: center;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color: #666;
+   height: 40px;
+   width: 40px;
 }
 .btn:active {
-  opacity: 0.6;
+   opacity: 0.6;
+}
+.btn span {
+   display: inline-flex;
 }
 .play-btn {
   color: #fff;
-  border-radius: 50%;
-  background-color: rgb(243, 88, 88);
+   border-radius: 50%;
+   background-color: rgb(243, 88, 88);
 }
-.pause-icon {
-  display: none;
+.play-btn .wait-icon {
+  animation: spin 1s linear infinite;
+}
+.play-btn .pause-icon, .play-btn .wait-icon {
+   display: none;
 }
 .play-btn.playing .pause-icon {
-  display: block;
+   display: inline-flex;
 }
-.play-btn.playing .play-icon {
-  display: none;
+.play-btn.playing .play-icon,
+.play-btn.playing .wait-icon {
+   display: none;
 }
+.play-btn.waiting .wait-icon {
+   display: inline-flex;
+}
+.play-btn.waiting .play-icon {display: none;}
 .icon {
-  line-height: 40px;
+   line-height: 40px;
 }
 .btn.active {
-  color: rgb(243, 88, 88);
+   color: rgb(243, 88, 88);
 }
 
 .duration {
-  -webkit-appearance: none;
-  background-color: #e1e1e1;
-  height: 9px;
-  outline: none;
-  border: none;
-  margin-top: 15px;
-  width: 100%;
-  border-radius: unset;
+   -webkit-appearance: none;
+   background-color: #e1e1e1;
+   height: 9px;
+   outline: none;
+   border: none;
+   margin-top: 15px;
+   width: 100%;
+   border-radius: unset;
 }
 .duration::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  background-color: rgb(243, 88, 88);
-  border: none;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
+   -webkit-appearance: none;
+   background-color: rgb(243, 88, 88);
+   border: none;
+   width: 15px;
+   height: 15px;
+   border-radius: 50%;
 }
 
 .duration::-moz-range-thumb {
-  background-color: #999;
-  border: none;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
+   background-color: #999;
+   border: none;
+   width: 15px;
+   height: 15px;
+   border-radius: 50%;
 }
 
 .playlist {
-  padding-top: 366px;
-  background-color: #e1e1e1;
-  min-height: 100vh;
+   padding-top: 366px;
+   background-color: #e1e1e1;
+   min-height: 100vh;
 }
 .song-list {
-  padding: 10px 7px 10px;
+   padding: 10px 7px 10px;
 }
 .song-item {
-  padding: 5px;
-  display: flex;
-  align-items: center;
-  height: 90px;
-  width: 100%;
-  background-color: #fff;
-  border-radius: 3px;
+   padding: 5px;
+   display: flex;
+   align-items: center;
+   height: 90px;
+   width: 100%;
+   background-color: #fff;
+   border-radius: 3px;
 }
 .song-item + .song-item {
-  margin-top: 8px;
+   margin-top: 8px;
 }
 .song-item:active {
-  opacity: 0.6;
+   opacity: 0.6;
 }
 .song-item.active {
-  background-color: rgb(243, 88, 88) !important;
+   background-color: rgb(243, 88, 88) !important;
 }
 .song-item.active h2 {
-  color: #fff;
+   color: #fff;
 }
 .song-item.active h4 {
-  color: #fff;
+   color: #fff;
 }
 .song-item.active i {
-  color: #fff;
+   color: #fff;
 }
 .song-frame {
-  width: 75px;
-  height: 75px;
-  background-position: center;
-  background-size: contain;
-  padding: 5px;
-  margin-right: 10px;
-  overflow: hidden;
-  /* margin: 5px; */
+   width: 75px;
+   height: 75px;
+   flex-shrink: 0;
+   background-position: center;
+   background-size: contain;
+   padding: 5px;
+   margin-right: 10px;
+   overflow: hidden;
+   /* margin: 5px; */
 }
 /* Làm ảnh vuông */
 /* cách 1: dùng object-fit */
 .song-frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 50%;
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   object-position: center;
+   border-radius: 50%;
 }
 /* cách 2: dùng div rồi dùng padding top */
 .song-img {
-  padding-top: 100%;
-  border-radius: 50%;
-  background-size: cover;
-  background-position: center;
+   padding-top: 100%;
+   border-radius: 50%;
+   background-size: cover;
+   background-position: center;
 }
+
 .song-info h2 {
-  /* color: #444; */
-  font-size: 1.8rem;
-  font-weight: 550;
+   /* color: #444; */
+   font-size: 1.8rem;
+   font-weight: 400;
+
+   display: -webkit-box;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   -webkit-box-orient: vertical;
+   -webkit-line-clamp: 1;
 }
 .song-info h4 {
-  /* color: #666; */
-  font-size: 1.2rem;
-  margin-top: 5px;
-  font-weight: 350;
+   /* color: #666; */
+   font-size: 1.2rem;
+   margin-top: 5px;
+   font-weight: 400;
+   color: #666;
 }
 .song-detail {
-  color: #666;
-  font-size: 1.6rem;
-  margin-left: auto;
-  margin-right: 10px;
+   color: #666;
+   font-size: 1.6rem;
+   margin-left: auto;
+   margin-right: 10px;
 }
 .song-detail i {
-  padding: 10px;
+   padding: 10px;
 }
 .song-detail i:active {
-  color: rgb(243, 88, 88) !important;
+   color: rgb(243, 88, 88) !important;
 }
 .volume-cotrol {
-  display: flex;
+   display: flex;
 }
 .hide {
-  margin: 0;
+   margin: 0;
 }
 .show {
-  display: block;
+   display: block;
 }
 @keyframes spin {
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
+   100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+   }
 }
