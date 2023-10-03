@@ -1,16 +1,8 @@
 {
    "homepage": "http://d4t06.github.io/HDPlayer",
-   "name": "static",
+   "name": "HDPlayer",
    "version": "1.0.0",
-   "description": "This is a static template with no bundling",
-   "main": "index.html",
-   "scripts": {
-      "start": "serve",
-      "build": "echo This is a static template, there is no bundler or bundling involved!"
-   },
-   "devDependencies": {
-      "serve": "^11.2.0"
-   },
+   "description": "This is a static template",
    "dependencies": {
       "browser-sync": "^2.29.3",
       "gulp": "^4.0.2",
