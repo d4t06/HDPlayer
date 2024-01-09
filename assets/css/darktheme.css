@@ -29,8 +29,7 @@
   background-color: #999;
 }
 
-.player.dark .play-icon,
-.player.dark .pause-icon {
+.player.dark .play-btn {
   color: black;
 }
 

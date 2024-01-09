@@ -1,80 +1,68 @@
-import {temporarySongs} from "./js/temporarySongs.js";
-import { LOCALSTORAGE_KEY } from "./js/constant.js";
-import handlEvents from "./js/handleEvent.js";
+import handleEvents from "./js/handleEvent.js";
 import {
-  updatePath,
-  sortSongs,
-  loadConfig,
-  render,
-  nextSong,
-  prevSong,
-  randomSong,
-  loadCurrentSong,
-  loadSettings,
-  setSettings
-  // renderMenu
+   sortSongs,
+   loadConfig,
+   render,
+   nextSong,
+   prevSong,
+   randomSong,
+   loadCurrentSong,
+   fetchSongs,
+   getActuallySongs,
+   renderMenu,
 } from "./js/actions.js";
-import handleMenu, { HandleGoBack } from "./js/handleMenu.js";
+import handleMenu from "./js/handleMenu.js";
+import { playlist, songs } from "./js/testData.js";
 
 const app = {
-  currentIndex: 0,
-  volume: 0.5,
-  isRepeat: false,
-  isRandom: false,
-  isPlaying: false,
-  isDark: false,
-  lastPlayList: "",
-  config: JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY)) || {},
-  //songs
-  songs: temporarySongs,
-  setConfig: function (key, value) {
-    this.config[key] = value;
-    localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(this.config));
-  },
-  // defineProperties: function () {
-  //   Object.defineProperty(this, "currentSong", {
-  //     get: function () {
-  //       return this.songs[this.currentIndex];
-  //     }
-  //   });
-  //   Object.defineProperty(this, "songsLength", {
-  //     get: function () {
-  //       return this.songs.length;
-  //     }
-  //   });
-  // },
+   currentIndex: 0,
+   volume: 1,
+   status: "",
+   isRepeat: false,
+   isRandom: false,
+   isPlaying: false,
+   isDark: false,
+   lastPlayList: "",
 
-  //actions
-  updatePath,
-  sortSongs,
-  loadConfig,
-  render,
-  nextSong,
-  prevSong,
-  randomSong,
-  loadCurrentSong,
-  loadSettings,
-  setSettings,
-  handleMenu,
-  HandleGoBack,
-  handlEvents,
+   songs: songs,
+   song_in: "songs",
+   endOfList: false,
+   playlists: playlist,
+   playlistSongs: [],
+   isWaiting: false,
 
-  start: function () {
-    this.loadConfig();
+   //actions
+   fetchSongs,
+   sortSongs,
+   loadConfig,
+   render,
+   nextSong,
+   prevSong,
+   randomSong,
+   loadCurrentSong,
+   handleMenu,
+   handleEvents,
+   getActuallySongs,
+   renderMenu,
 
-    // this.updatePath();
+   start: async function () {
+      await this.fetchSongs();
 
-    // this.sortSongs();
+      this.getActuallySongs();
 
-    this.render();
+      this.loadConfig();
 
-    // this.defineProperties();
-    this.loadCurrentSong();
+      this.render()
+      
+      this.loadCurrentSong();
 
-    this.handlEvents();
+      this.renderMenu();
 
-    this.handleMenu();
-  }
+      this.handleEvents();
+
+      this.handleMenu();
+
+   },
 };
 
 app.start();
