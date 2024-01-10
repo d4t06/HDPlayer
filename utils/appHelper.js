@@ -1,8 +1,8 @@
 export const setLocalStorage = (key, value) => {
    localStorage.setItem(key, JSON.stringify(value));
 };
-export const getLocalStorageItem = (key) => JSON.parse(localStorage.getItem(key)) || "";
-
+export const getLocalStorageItem = (key) => JSON.parse(localStorage.getItem(key));
+  
 export const  handleTimeText = (duration) => {
    if (!duration) return "";
 
