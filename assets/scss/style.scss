@@ -59,7 +59,8 @@
             font-size: 12px;
             padding: 2px 5px;
             right: 0;
-            top: -7px;
+            top: 50%;
+            transform: translate(0, -50%);
             color: #fff;
          }
       }

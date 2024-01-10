@@ -1,9 +1,4 @@
-import {
-   collection,
-   getDocs,
-   query,
-   where,
-} from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
+import { collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
 
 import {
    songListSelect,
@@ -19,9 +14,8 @@ import {
    rePeatBtn,
    player,
 } from "./constant.js";
-import { temporarySongs } from "./temporarySongs.js";
 import { db } from "../../firebase/config.js";
-import handleEvents, { onPauseHandle } from "./handleEvent.js";
+import { onPauseHandle } from "./handleEvent.js";
 import { getLocalStorageItem } from "../../utils/appHelper.js";
 
 const $ = document.querySelector.bind(document);
@@ -39,10 +33,7 @@ export const fetchSongs = async function () {
    const queryGetSongs = query(songSollectionRef, where("by", "==", "huudat01234560@gmail.com"));
 
    const playlistCollectionRef = collection(db, "playlist");
-   const queryGetPlaylists = query(
-      playlistCollectionRef,
-      where("by", "==", "huudat01234560@gmail.com")
-   );
+   const queryGetPlaylists = query(playlistCollectionRef, where("by", "==", "huudat01234560@gmail.com"));
 
    try {
       const songsSnap = await getDocs(queryGetSongs);
@@ -78,9 +69,7 @@ export const render = function () {
       actuallySongs.forEach((song, index) => {
          songListHTML += `<li class="song-item" id="${index}">
             <div class="song-frame">
-              <div class="song-img" style="background-image: url(${
-                 song.image_url || "https://placehold.co/100"
-              })" >
+              <div class="song-img" style="background-image: url(${song.image_url || "https://placehold.co/100"})" >
               </div>
             </div>
             <div class="song-info">
@@ -102,8 +91,7 @@ export const renderMenu = function () {
 
    if (this?.playlists?.length) {
       this.playlists.forEach(
-         (playlist) =>
-            (playlistHTML += `<option value='${playlist.name}'>${playlist.name}</option>`)
+         (playlist) => (playlistHTML += `<option value='${playlist.name}'>${playlist.name}</option>`)
       );
       songListSelect.innerHTML = playlistHTML;
    }
@@ -139,7 +127,7 @@ export const randomSong = function () {
 const resetForNewSong = () => {
    timeSliderCurrent.style.width = "0%";
    // timeSliderHolder.style.left = "0%";
-   timeSliderHolder.style.transform = `translateX(100%)`;
+   timeSliderHolder.style.transform = `translateX(100%, -50%)`;
    currentTimeEle.innerText = "00:00";
    durationEle.innerText = "/ --:--";
 };
@@ -156,7 +144,7 @@ export const loadCurrentSong = function () {
    let songElements = $$(".song-item");
 
    if (titleEle.style.transition !== "unset") {
-      console.log('unscroll text');
+      console.log("unScroll text");
       titleEl.style.transition = `unset`;
       titleEl.style.transform = `translateX(0px)`;
    }

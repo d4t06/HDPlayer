@@ -14,10 +14,8 @@ import {
    timeSliderCurrent,
    timeSliderHolder,
    volumeSliderCurrent,
-   volumeSliderHolder,
    currentTimeEle,
    durationEle,
-   waitIcon,
 } from "./constant.js";
 // import { subMenu } from "./menu.js";
 
@@ -78,16 +76,16 @@ const handleEvents = function () {
       }
    };
 
-   if (!isDesktop) musicVolume.remove();
-   else {
-      window.addEventListener("keydown", (e) => {
-         e.preventDefault();
+   // if (!isDesktop) musicVolume.remove();
+   // else {
+   //    window.addEventListener("keydown", (e) => {
+   //       e.preventDefault();
 
-         if (e.key === " ") {
-            playBtn.click();
-         }
-      });
-   }
+   //       if (e.key === " ") {
+   //          playBtn.click();
+   //       }
+   //    });
+   // }
 
    cdImg.onclick = () => {
       scrollToActive(_this.currentIndex);
@@ -205,12 +203,14 @@ const handleEvents = function () {
       const currentTime = audio.currentTime;
       const duration = audio.duration;
 
+      console.log('run herer');
+
       timeSliderCurrent.style.width = (currentTime / (duration / 100)).toFixed(1) + "%";
 
       // timeSliderHolder.style.left = (currentTime / (duration / 100)).toFixed(1) + "%";
-      timeSliderHolder.style.transform = `translateX(${
+      timeSliderHolder.style.transform = `translate(${
         100 - +(currentTime / (duration / 100) + 1).toFixed(1) + "%"
-      })`;
+      }, -50%)`;
 
       currentTimeEle.innerText = handleTimeText(currentTime) || "00:00";
    };

@@ -12,7 +12,6 @@ import {
    renderMenu,
 } from "./js/actions.js";
 import handleMenu from "./js/handleMenu.js";
-import { playlist, songs } from "./js/testData.js";
 
 const app = {
    currentIndex: 0,
@@ -24,10 +23,10 @@ const app = {
    isDark: false,
    lastPlayList: "",
 
-   songs: songs,
+   songs: [],
    song_in: "songs",
    endOfList: false,
-   playlists: playlist,
+   playlists: [],
    playlistSongs: [],
    isWaiting: false,
 
