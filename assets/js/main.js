@@ -1,4 +1,4 @@
-import handleEvents from "./js/handleEvent.js";
+import handleEvents from "./handleEvent.js";
 import {
    sortSongs,
    loadConfig,
@@ -10,8 +10,8 @@ import {
    fetchSongs,
    getActuallySongs,
    renderMenu,
-} from "./js/actions.js";
-import handleMenu from "./js/handleMenu.js";
+} from "./actions.js";
+import handleMenu from "./handleMenu.js";
 
 const app = {
    currentIndex: 0,
@@ -45,11 +45,11 @@ const app = {
    renderMenu,
 
    start: async function () {
+      this.loadConfig();
+
       await this.fetchSongs();
 
       this.getActuallySongs();
-
-      this.loadConfig();
 
       this.render()
       

@@ -3,28 +3,23 @@ var sass = require("gulp-sass")(require("node-sass"));
 var browserSync = require("browser-sync");
 
 // const concat = require('gulp-concat');
-// const terser = require('gulp-terser'); 
-
-const config = {
-   from: "./assets/scss/style.scss",
-   to: "./assets/css",
-};
+const terser = require('gulp-terser'); 
 
 function scss() {
-   return gulp.src(config.from)
+   return gulp.src('assets/scss/*.scss')
    .pipe(sass())
-   .pipe(gulp.dest(config.to))
+   .pipe(gulp.dest('dist/css'))
    .pipe(browserSync.stream());
 }
 
 
-// function js() { 
-//   return src(['./js/*.js'])
+function js() { 
+  return gulp.src(['assets/js/*.js'])
 //   .pipe(concat('scripts.min.js'))
-//   .pipe(terser())
-//   .pipe(dest('js'))
+  .pipe(terser())
+  .pipe(gulp.dest('dist/js'))
 //   .pipe(browserSync.stream());
-// }
+}
 
 function watch() {
    browserSync.init({
@@ -37,5 +32,13 @@ function watch() {
    gulp.watch(config.from, scss);
 }
 
+function build () {
+   scss();
+   js();
+
+}
+
 exports.scss = scss;
-exports.watch = watch;
+exports.js = js;
+exports.default = gulp.series(scss, js);
+

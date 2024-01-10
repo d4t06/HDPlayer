@@ -48,7 +48,7 @@
   padding: 2px 5px;
   right: 0;
   top: 50%;
-  transform: translate(0, -50%);
+  transform: translate(100%, -50%);
   color: #fff; }
 
 .player .go-top-btn {

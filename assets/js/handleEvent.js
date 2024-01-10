@@ -41,7 +41,7 @@ const handleEvents = function () {
    let firstTimeRender = true;
    let isLoadedAudio = false;
 
-   audio.volume = this.volume
+   audio.volume = this.volume;
 
    // define methods
    const playSong = function () {
@@ -203,13 +203,13 @@ const handleEvents = function () {
       const currentTime = audio.currentTime;
       const duration = audio.duration;
 
-      console.log('run herer');
+      if (!currentTime) return;
 
       timeSliderCurrent.style.width = (currentTime / (duration / 100)).toFixed(1) + "%";
 
       // timeSliderHolder.style.left = (currentTime / (duration / 100)).toFixed(1) + "%";
       timeSliderHolder.style.transform = `translate(${
-        100 - +(currentTime / (duration / 100) + 1).toFixed(1) + "%"
+         100 - +(currentTime / (duration / 100) + 1).toFixed(1) + "%"
       }, -50%)`;
 
       currentTimeEle.innerText = handleTimeText(currentTime) || "00:00";

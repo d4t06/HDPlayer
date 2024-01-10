@@ -8,7 +8,6 @@ import {
    currentTimeEle,
    durationEle,
    volumeSliderCurrent,
-   volumeSliderHolder,
    switchBtn,
    randomBtn,
    rePeatBtn,
@@ -135,6 +134,8 @@ const resetForNewSong = () => {
 export const loadCurrentSong = function () {
    onPauseHandle(this);
    resetForNewSong();
+
+   console.log('run this');
 
    let singerEle = $(".dashboard h4");
    let titleEle = $(".dashboard h2");
