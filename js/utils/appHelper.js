@@ -1,0 +1,1 @@
+export const setLocalStorage=(t,e)=>{localStorage.setItem(t,JSON.stringify(e))};export const getLocalStorageItem=t=>JSON.parse(localStorage.getItem(t));export const handleTimeText=t=>{if(!t)return"";let e=0,o=+t.toFixed(0);for(;o>=60;)o-=60,e++;return e<10?o>=10?`0${e}:${o}`:`0${e}:0${o}`:o>=10?`${e}:${o}`:`${e}:0${o}`};
