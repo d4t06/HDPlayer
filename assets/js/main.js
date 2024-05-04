@@ -1,4 +1,5 @@
 import handleEvents from "./handleEvent.js";
+import handleAudioEvent from "./handleAudioEvent.js";
 import {
    sortSongs,
    loadConfig,
@@ -10,10 +11,13 @@ import {
    fetchSongs,
    getActuallySongs,
    renderMenu,
+   loadCurrentSongFromLocalStorage,
+   updateCurrentIndex,
 } from "./actions.js";
 import handleMenu from "./handleMenu.js";
 
 const app = {
+   currentSongs: null,
    currentIndex: 0,
    volume: 1,
    status: "",
@@ -21,6 +25,7 @@ const app = {
    isRandom: false,
    isPlaying: false,
    isDark: false,
+   isFirstLoadSong: true,
    lastPlayList: "",
 
    songs: [],
@@ -39,28 +44,34 @@ const app = {
    prevSong,
    randomSong,
    loadCurrentSong,
+   loadCurrentSongFromLocalStorage,
+   updateCurrentIndex,
    handleMenu,
    handleEvents,
+   handleAudioEvent,
    getActuallySongs,
    renderMenu,
 
    start: async function () {
+      // this.handleAudioEvent();
+
       this.loadConfig();
 
       await this.fetchSongs();
 
       this.getActuallySongs();
 
-      this.render()
-      
-      this.loadCurrentSong();
+      this.render();
 
-      this.renderMenu();
+      this.loadCurrentSongFromLocalStorage();
+
+      this.updateCurrentIndex();
 
       this.handleEvents();
 
-      this.handleMenu();
+      this.renderMenu();
 
+      this.handleMenu();
    },
 };
 

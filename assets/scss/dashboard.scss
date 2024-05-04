@@ -1,0 +1,217 @@
+.player {
+   min-height: 100vh;
+   .dashboard-container {
+      display: flex;
+      align-items: center;
+      background-color: #fff;
+      border-bottom: 8px solid #e1e1e1;
+      padding: 16px 14px 16px;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+
+      .dashboard {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         width: 100%;
+      }
+
+      .title-wrapper {
+         overflow: hidden;
+         position: relative;
+         height: 30px;
+         width: 90%;
+         -webkit-mask-image: linear-gradient(
+            90deg,
+            hsla(0, 0%, 100%, 0),
+            hsla(0, 0%, 100%, 0.8) 1%,
+            #fff 1%,
+            #fff 99%,
+            hsla(0, 0%, 100%, 0.8) 1%,
+            hsla(0, 0%, 100%, 0)
+         );
+      }
+      h4 {
+         font-size: 1.3rem;
+         font-weight: 500;
+         color: #f35858;
+      }
+      h2 {
+         position: absolute;
+         white-space: nowrap;
+         left: 0;
+         min-width: 100%;
+         font-size: 2.5rem;
+         font-weight: 400;
+         text-align: center;
+      }
+
+      //   menu button
+      .openMenu {
+         position: absolute;
+         color: #666;
+         top: 7px;
+         left: 5px;
+         font-size: 2rem;
+         padding: 5px;
+      }
+
+      .slider {
+         &::after,
+         &::before {
+            content: "";
+            height: 100%;
+            width: 100%;
+            position: absolute;
+         }
+
+         &::after {
+            top: 100%;
+         }
+         &::before {
+            bottom: 100%;
+         }
+      }
+
+      .volume-slider,
+      .time-slider {
+         height: 6px;
+         width: 95%;
+         margin-top: 20px;
+         position: relative;
+         background-color: #e1e1e1;
+         display: flex;
+         cursor: pointer;
+         border-radius: 5px;
+
+         @media screen and (min-width: 550px) {
+            margin-top: 30px;
+         }
+
+         .current {
+            cursor: pointer;
+            position: relative;
+            background-color: #999;
+            border-radius: 5px 0 0 5px;
+            height: 100%;
+         }
+
+         .holder {
+            span {
+               user-select: none;
+            }
+         }
+      }
+
+      .volume-slider {
+         display: none;
+         .holder {
+            position: absolute;
+            top: 0;
+            right: 0;
+            color: rgb(243, 88, 88);
+            transform: translate(50%, -30%);
+
+            .current-time {
+               display: inline-block;
+               width: 35px;
+            }
+         }
+
+         @media screen and (min-width: 550px) {
+            display: block;
+         }
+      }
+
+      .time-slider {
+         .holder {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            width: 90px;
+            background-color: rgb(243, 88, 88);
+            border-radius: 99px;
+            font-size: 12px;
+            padding: 2px 5px;
+            right: 0;
+            top: 50%;
+            transform: translate(100%, -50%);
+            color: #fff;
+
+            .current-time {
+               display: inline-block;
+               width: 34px;
+            }
+         }
+      }
+
+      .cd {
+         width: 200px;
+         display: flex;
+         margin: 10px 0;
+         .cd-img {
+            padding-top: 100%;
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            width: 100%;
+            animation: spin 12s linear infinite paused;
+         }
+      }
+
+      .control {
+         display: flex;
+         justify-content: space-between;
+         width: 90%;
+         .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            height: 40px;
+            width: 40px;
+            &.active {
+               color: rgb(243, 88, 88);
+            }
+            span {
+               display: inline-flex;
+            }
+         }
+
+         .play-btn {
+            color: #fff;
+            border-radius: 50%;
+            background-color: rgb(243, 88, 88);
+            .wait-icon {
+               animation: spin 1s linear infinite;
+               display: none;
+            }
+            .pause-icon {
+               display: none;
+            }
+
+            &.playing {
+               .pause-icon {
+                  display: inline-flex;
+               }
+               .play-icon {
+                  display: none;
+               }
+               .wait-icon {
+                  display: none;
+               }
+            }
+            &.waiting {
+               .wait-icon {
+                  display: inline-flex;
+               }
+               .play-icon {
+                  display: none;
+               }
+            }
+         }
+      }
+   }
+}

@@ -1,4 +1,4 @@
-import { handleTimeText, setLocalStorage } from "../../utils/appHelper.js";
+import { handleTimeText, setLocalStorage } from "./utils/appHelper.js";
 import {
    dashboard,
    cd,
@@ -17,12 +17,11 @@ import {
    currentTimeEle,
    durationEle,
 } from "./constant.js";
-// import { subMenu } from "./menu.js";
 
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
-let intervalId;
+let intervalId = null;
 
 const onPauseHandle = function (_this) {
    playBtn.classList.remove("playing");
@@ -37,11 +36,6 @@ const handleEvents = function () {
 
    const cdWidth = cd.offsetWidth;
    const isDesktop = window.innerWidth >= 724;
-
-   let firstTimeRender = true;
-   let isLoadedAudio = false;
-
-   audio.volume = this.volume;
 
    // define methods
    const playSong = function () {
@@ -59,9 +53,12 @@ const handleEvents = function () {
       }, 200);
    };
 
-   const handleScroll = (index) => {
+   const handleScrollActiveSongIntoView = (curIndex) => {
       const activeSongEle = $(".song-item.active");
       if (!activeSongEle) return;
+
+      if (curIndex !== undefined) return scrollToActive(songElements[curIndex]);
+
       const rect = activeSongEle.getBoundingClientRect();
 
       const playerHeight = dashboard.offsetHeight;
@@ -69,26 +66,12 @@ const handleEvents = function () {
       const bottomCondition = rect.top < window.innerHeight;
 
       if (topCondition && bottomCondition) {
-         console.log("scroll");
          scrollToActive(activeSongEle);
-      } else {
-         console.log("no scroll");
       }
    };
 
-   // if (!isDesktop) musicVolume.remove();
-   // else {
-   //    window.addEventListener("keydown", (e) => {
-   //       e.preventDefault();
-
-   //       if (e.key === " ") {
-   //          playBtn.click();
-   //       }
-   //    });
-   // }
-
    cdImg.onclick = () => {
-      scrollToActive(_this.currentIndex);
+      handleScrollActiveSongIntoView(_this.currentIndex);
    };
 
    const unScroll = () => {
@@ -108,15 +91,13 @@ const handleEvents = function () {
 
       if (!titleEl || !singerWrapper) return;
 
-      const handleScroll = () => {
+      const calc = () => {
          // scroll distance
          distance = titleEl.offsetWidth + 20;
          duration = +(distance / 35).toFixed(1);
       };
 
       const scroll = () => {
-         console.log("scroll text");
-         // add animation
          titleEl.style.transition = `transform linear ${duration}s`;
          titleEl.style.transform = `translateX(-${distance}px)`;
 
@@ -129,7 +110,7 @@ const handleEvents = function () {
       let isOverFlow = titleEl.offsetWidth - singerWrapper.offsetWidth > 0 ? true : false;
       if (!isOverFlow) return;
 
-      handleScroll();
+      calc();
 
       titleEl.innerHTML = titleEl.innerText + "&nbsp; &nbsp; &nbsp;" + titleEl.innerText;
 
@@ -140,24 +121,22 @@ const handleEvents = function () {
    };
 
    // >>> play song when click
-   songElements.forEach((song) => {
+   songElements.forEach((song, index) => {
       song.onclick = (e) => {
          if (e.target.parentElement.classList.contains("song-detail")) return;
 
-         if (+song.id !== _this.currentIndex) {
-            _this.currentIndex = +song.id;
+         if (!_this.currentSong || song.id !== _this.currentSong.id) {
+            _this.currentIndex = index;
+
+            // set and load current song
             _this.loadCurrentSong();
          }
       };
    });
 
-   // const cdImgAnimate = cdImg.animate([{ transform: "rotate(360deg)" }], {
-   //   duration: 12000,
-   //   iterations: Infinity //
-   // });
-
    // resize the cd when scroll
    window.onscroll = function () {
+      if (isDesktop) return;
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
 
       const newCdWidth = cdWidth - scrollTop / 2;
@@ -177,7 +156,7 @@ const handleEvents = function () {
       gotopBtn.classList.remove("show");
    };
 
-   const onPlayHandle = function () {
+   const onPlayHandle = function (e) {
       playBtn.classList.add("playing");
       playBtn.classList.remove("waiting");
 
@@ -186,14 +165,8 @@ const handleEvents = function () {
       cdImg.style.animationPlayState = "running";
    };
 
-   const onWaitingHandle = function () {
-      _this.isWaiting = true;
-      playBtn.classList.add("waiting");
-      playBtn.classList.remove("playing");
-   };
-
    //  >>> audio handle
-   audio.onplaying = () => onPlayHandle();
+   audio.onplaying = (e) => onPlayHandle(e);
 
    audio.onpause = () => {
       onPauseHandle(_this);
@@ -216,57 +189,70 @@ const handleEvents = function () {
    };
 
    audio.onended = function () {
-      // unScroll();
-      if (_this.isRepeat) {
-         playSong();
-         console.log("Repeat");
-         return;
-      }
+      if (_this.isRepeat) return playSong();
 
-      if (_this.isRandom) {
-         _this.randomSong();
-         // activeSong(_this.currentIndex);
-         return;
-      }
+      if (_this.isRandom) return _this.randomSong();
 
-      // default
       _this.nextSong();
-      // activeSong(_this.currentIndex);
    };
 
-   audio.onloadedmetadata = (e) => {
+   audio.addEventListener("loadedmetadata", (e) => {
       durationEle.innerText = "/ " + handleTimeText(e.target.duration);
-      isLoadedAudio = true;
 
-      if (firstTimeRender) {
-         firstTimeRender = false;
+      if (_this.isFirstLoadSong) {
+         _this.isFirstLoadSong = false;
          return;
       }
+
+      console.log("event event");
 
       if (_this.endOfList) {
          _this.endOfList = false;
       } else if (!_this.isPlaying) {
-         handleScroll(_this.currentIndex);
+         handleScrollActiveSongIntoView();
          scrollText();
          playSong();
       }
-   };
+   });
 
-   audio.onwaiting = () => onWaitingHandle();
+   function updateVolume(vol) {
+      volumeSliderCurrent.style.width = vol * 100 + "%";
+      audio.volume = vol;
 
-   // >> process handle
+      setLocalStorage("volume", vol);
+   }
+
    musicVolume.onclick = function (e) {
       let volumeBaseWidth = musicVolume.offsetWidth;
       let newVolume = (e.clientX - 25) / volumeBaseWidth;
 
-      volumeSliderCurrent.style.width = newVolume * 100 + "%";
-      audio.volume = +newVolume.toFixed(2);
+      updateVolume(+newVolume.toFixed(2));
+   };
 
-      setLocalStorage("volume", +newVolume.toFixed(2));
+   musicVolume.onwheel = function (e) {
+      e.preventDefault();
+
+      const AMOUNT = 0.05;
+      let newVolume = audio.volume;
+
+      // scroll down
+      if (e.deltaY > 0) {
+         if (newVolume - AMOUNT > 0) newVolume -= AMOUNT;
+         else {
+            newVolume = 0;
+         }
+      } else {
+         if (newVolume + AMOUNT < 1) newVolume += AMOUNT;
+         else {
+            newVolume = 1;
+         }
+      }
+
+      updateVolume(+newVolume.toFixed(2));
    };
 
    timeSlider.onclick = (e) => {
-      if (!isLoadedAudio) return;
+      // if (!_this.isLoadedAudio) return;
 
       let playerWidth = timeSlider.offsetWidth;
       let newCurrentTime = Math.floor(((e.clientX - 25) / playerWidth) * 100);
@@ -280,9 +266,8 @@ const handleEvents = function () {
 
    // >>> button handle
    playBtn.onclick = function () {
-      if (!isLoadedAudio) return;
+      // if (!_this.isLoadedAudio) return;
 
-      console.log("click", _this.isPlaying);
       if (_this.isPlaying) {
          audio.pause(); // (default)
       } else {
@@ -315,7 +300,7 @@ const handleEvents = function () {
       rePeatBtn.classList.toggle("active", value);
    };
 
-   gotopBtn.onclick = () => scrollToActive(0);
+   gotopBtn.onclick = () => handleScrollActiveSongIntoView(0);
 };
 
 export { onPauseHandle };

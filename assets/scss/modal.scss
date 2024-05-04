@@ -1,0 +1,34 @@
+$color_1: #000;
+$background-color_1: rgba(0, 0, 0, 0.3);
+$background-color_2: #fff;
+
+.modal_overplay {
+	display: none;
+	position: fixed;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: $background-color_1;
+	z-index: 1;
+}
+.level2 {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: $background-color_2;
+	color: $color_1;
+}
+.level2.open {
+	display: block;
+}
+.level-2 {
+	.level2-content {
+		position: relative;
+		height: 100%;
+	}
+}

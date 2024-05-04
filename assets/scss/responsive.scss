@@ -1,0 +1,32 @@
+@media screen and (min-width: 550px) {
+   .player {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      height: 100vh;
+
+      .dashboard-container {
+         position: relative;
+         width: 100%;
+         height: 100%;
+         border: unset !important;
+         .volume-slider {
+            height: 6px;
+            margin-top: 30px;
+         }
+         .time-slider {
+            height: 6px;
+            margin-top: 30px;
+         }
+      }
+      .playlist {
+         padding-top: 0;
+         height: 100%;
+         width: 100%;
+         overflow: auto;
+      }
+      .duration {
+         height: 13px;
+      }
+   }
+}
