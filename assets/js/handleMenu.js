@@ -1,5 +1,5 @@
 import { setLocalStorage } from "./utils/appHelper.js";
-import { onPauseHandle } from "./handleEvent.js";
+import { handleOnPause } from "./handleAudioEvent.js";
 
 const $ = document.querySelector.bind(document);
 const level2 = $(".level2");
@@ -48,7 +48,7 @@ const handleMenuEvents = (_this) => {
    // handle select playlist
    songListSelect.onchange = (e) => {
       // pause
-      onPauseHandle(_this);
+      handleOnPause(_this);
       const playlistName = e.target.value;
 
       if (playlistName) {

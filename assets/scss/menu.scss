@@ -2,17 +2,15 @@
    .go-top-btn {
       display: none;
       position: fixed;
-      height: 35px;
-      width: 35px;
+      height: 40px;
+      width: 40px;
 
       align-items: center;
       justify-content: center;
       background-color: #ccc;
       border-radius: 50%;
-      bottom: 10px;
-      right: 50%;
-      transform: translateX(50%);
-      opacity: 0.6;
+      bottom: 20px;
+      right: 20px;
 
       &.show {
          display: flex;

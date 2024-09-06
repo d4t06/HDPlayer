@@ -1,8 +1,6 @@
-import handleEvents from "./handleEvent.js";
-import handleAudioEvent from "./handleAudioEvent.js";
 import {
    sortSongs,
-   loadConfig,
+   loadLocalStorage,
    render,
    nextSong,
    prevSong,
@@ -10,52 +8,45 @@ import {
    loadCurrentSong,
    fetchSongs,
    getActuallySongs,
-   renderMenu,
-   loadCurrentSongFromLocalStorage,
    updateCurrentIndex,
 } from "./actions.js";
+import handleAudioEvent from "./handleAudioEvent.js";
+import handleEvent from "./handleEvent.js";
 import handleMenu from "./handleMenu.js";
 
 const app = {
-   currentSongs: null,
-   currentIndex: 0,
-   volume: 1,
-   status: "",
    isRepeat: false,
    isRandom: false,
    isPlaying: false,
-   isDark: false,
+   isWaiting: false,
+
    isFirstLoadSong: true,
-   lastPlayList: "",
+   currentIndex: 0,
+   isDark: false,
 
    songs: [],
-   song_in: "songs",
    endOfList: false,
-   playlists: [],
-   playlistSongs: [],
-   isWaiting: false,
 
    //actions
    fetchSongs,
    sortSongs,
-   loadConfig,
+   loadLocalStorage,
    render,
    nextSong,
    prevSong,
    randomSong,
    loadCurrentSong,
-   loadCurrentSongFromLocalStorage,
    updateCurrentIndex,
    handleMenu,
-   handleEvents,
-   handleAudioEvent,
    getActuallySongs,
-   renderMenu,
+
+   handleEvent,
+   handleAudioEvent,
 
    start: async function () {
-      // this.handleAudioEvent();
+      this.handleAudioEvent();
 
-      this.loadConfig();
+      this.loadLocalStorage();
 
       await this.fetchSongs();
 
@@ -63,13 +54,9 @@ const app = {
 
       this.render();
 
-      this.loadCurrentSongFromLocalStorage();
+      this.handleEvent();
 
       this.updateCurrentIndex();
-
-      this.handleEvents();
-
-      this.renderMenu();
 
       this.handleMenu();
    },

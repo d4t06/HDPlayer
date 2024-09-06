@@ -5,7 +5,6 @@
       align-items: center;
       background-color: #fff;
       border-bottom: 8px solid #e1e1e1;
-      padding: 16px 14px 16px;
       width: 100%;
       position: fixed;
       top: 0;
@@ -14,15 +13,16 @@
       .dashboard {
          display: flex;
          flex-direction: column;
-         align-items: center;
+         padding: 16px 20px 16px;
          width: 100%;
       }
 
       .title-wrapper {
          overflow: hidden;
          position: relative;
-         height: 30px;
          width: 90%;
+         margin: 0 auto;
+         height: 30px;
          -webkit-mask-image: linear-gradient(
             90deg,
             hsla(0, 0%, 100%, 0),
@@ -32,20 +32,24 @@
             hsla(0, 0%, 100%, 0.8) 1%,
             hsla(0, 0%, 100%, 0)
          );
+
+         h2 {
+            position: absolute;
+            white-space: nowrap;
+            left: 0;
+            min-width: 100%;
+            font-size: 2.5rem;
+            font-weight: 500;
+            text-align: center;
+         }
       }
       h4 {
-         font-size: 1.3rem;
+         text-align: center;
+         font-size: 1.4rem;
          font-weight: 500;
          color: #f35858;
-      }
-      h2 {
-         position: absolute;
-         white-space: nowrap;
-         left: 0;
-         min-width: 100%;
-         font-size: 2.5rem;
-         font-weight: 400;
-         text-align: center;
+         width: 90%;
+         margin: 20px auto 0;
       }
 
       //   menu button
@@ -73,15 +77,21 @@
          &::before {
             bottom: 100%;
          }
+
+         .holder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: rgb(243, 88, 88);
+            transform: translate(-50%, -30%);
+         }
       }
 
       .volume-slider,
       .time-slider {
          height: 6px;
-         width: 95%;
          margin-top: 20px;
          position: relative;
-         background-color: #e1e1e1;
          display: flex;
          cursor: pointer;
          border-radius: 5px;
@@ -89,68 +99,31 @@
          @media screen and (min-width: 550px) {
             margin-top: 30px;
          }
-
-         .current {
-            cursor: pointer;
-            position: relative;
-            background-color: #999;
-            border-radius: 5px 0 0 5px;
-            height: 100%;
-         }
-
-         .holder {
-            span {
-               user-select: none;
-            }
-         }
       }
 
       .volume-slider {
          display: none;
-         .holder {
-            position: absolute;
-            top: 0;
-            right: 0;
-            color: rgb(243, 88, 88);
-            transform: translate(50%, -30%);
-
-            .current-time {
-               display: inline-block;
-               width: 35px;
-            }
-         }
-
          @media screen and (min-width: 550px) {
             display: block;
          }
       }
 
-      .time-slider {
-         .holder {
-            display: flex;
-            justify-content: center;
-            position: absolute;
-            width: 90px;
-            background-color: rgb(243, 88, 88);
-            border-radius: 99px;
-            font-size: 12px;
-            padding: 2px 5px;
-            right: 0;
-            top: 50%;
-            transform: translate(100%, -50%);
-            color: #fff;
-
-            .current-time {
-               display: inline-block;
-               width: 34px;
-            }
+      .time {
+         font-size: 1.6rem;
+         font-weight: 500;
+         margin-top: 12px;
+         display: flex;
+         justify-content: space-between;
+         color: #f35858;
+         .current-time {
+            color: #999;
          }
       }
 
       .cd {
+         margin: 10px auto 10px;
          width: 200px;
          display: flex;
-         margin: 10px 0;
          .cd-img {
             padding-top: 100%;
             background-size: cover;
@@ -164,7 +137,6 @@
       .control {
          display: flex;
          justify-content: space-between;
-         width: 90%;
          .btn {
             display: flex;
             align-items: center;

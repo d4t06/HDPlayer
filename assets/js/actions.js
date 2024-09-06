@@ -1,26 +1,23 @@
-// import {
-//    collection,
-//    getDocs,
-//    query,
-//    where,
-// } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
-
 import {
-   songListSelect,
    songlist,
-   timeSliderCurrent,
    timeSliderHolder,
    currentTimeEle,
-   durationEle,
-   volumeSliderCurrent,
    switchBtn,
    randomBtn,
    rePeatBtn,
    body,
+   timeSlider,
+   audio,
+   playBtn,
+   durationEle,
 } from "./constant.js";
-import { db, collection, getDocs, query, where } from "./firebase/config.js";
-import { onPauseHandle } from "./handleEvent.js";
-import { getLocalStorageItem, setLocalStorage } from "./utils/appHelper.js";
+import { handleOnPause, updateVolume } from "./handleAudioEvent.js";
+import {
+   convertToEn,
+   generateHSL,
+   getLocalStorageItem,
+   setLocalStorage,
+} from "./utils/appHelper.js";
 
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
@@ -30,36 +27,20 @@ let actuallySongs = [];
 
 export const getActuallySongs = function () {
    console.log("get actually songs");
-   actuallySongs = this.song_in === "playlist" ? this.playlistSongs : this.songs;
+   actuallySongs = this.songs;
+   // actuallySongs =
+   //    this.song_in === "playlist" ? this.playlistSongs : this.songs;
 };
 
 export const fetchSongs = async function () {
-   const songSollectionRef = collection(db, "songs");
-   const queryGetSongs = query(
-      songSollectionRef,
-      where("by", "==", "huudat01234560@gmail.com")
-   );
-
-   const playlistCollectionRef = collection(db, "playlist");
-   const queryGetPlaylists = query(
-      playlistCollectionRef,
-      where("by", "==", "huudat01234560@gmail.com")
-   );
-
    try {
-      const songsSnap = await getDocs(queryGetSongs);
-      const playlistsSnap = await getDocs(queryGetPlaylists);
+      const res = await fetch("https://nest-mp3.vercel.app/api/songs");
+      if (!res.ok) throw new Error("");
 
-      if (songsSnap.docs.length) {
-         const userSongs = songsSnap.docs.map((doc) => doc.data());
-         this.songs = userSongs;
-      } else {
-         this.songs = temporarySongs;
-      }
+      const payload = await res.json();
 
-      if (playlistsSnap.docs.length) {
-         const playlists = playlistsSnap.docs.map((doc) => doc.data());
-         this.playlists = playlists;
+      if (payload.data.songs.length) {
+         this.songs = payload.data.songs;
       }
    } catch (error) {
       console.log(error);
@@ -68,8 +49,9 @@ export const fetchSongs = async function () {
 
 export const sortSongs = function () {
    var sortedSongs = this.songs.sort((a, b) => {
-      return a.name > b.name;
+      return convertToEn(a.name.charAt(0)) > convertToEn(b.name.charAt(0));
    });
+
    this.songs = sortedSongs;
 };
 
@@ -81,11 +63,10 @@ export const render = function () {
          songListHTML += `<li class="song-item ${
             this.currentSong && this.currentSong.id === song.id ? "active" : ""
          }" id="${song.id}">
-            <div class="song-frame">
-              <div class="song-img" style="background-image: url(${
-                 song.image_url || "https://placehold.co/100"
-              })" >
-              </div>
+            <div class="song-frame" style="background-color: ${generateHSL(
+               song.name
+            )}">
+               ${song.name.charAt(0)}
             </div>
             <div class="song-info">
               <h2>${song.name}</h2>
@@ -102,16 +83,20 @@ export const render = function () {
 };
 
 export const renderMenu = function () {
-   let playlistHTML = '<option value="">Default</option>';
-
-   if (this?.playlists?.length) {
-      this.playlists.forEach(
-         (playlist) =>
-            (playlistHTML += `<option value='${playlist.name}'>${playlist.name}</option>`)
-      );
-      songListSelect.innerHTML = playlistHTML;
-   }
+   // let playlistHTML = '<option value="">Default</option>';
+   // if (this?.playlists?.length) {
+   //    this.playlists.forEach(
+   //       (playlist) =>
+   //          (playlistHTML += `<option value='${playlist.name}'>${playlist.name}</option>`)
+   //    );
+   //    songListSelect.innerHTML = playlistHTML;
+   // }
 };
+
+// export const playSong = function () {
+//    audio.play();
+//    playBtn.classList.add("playing");
+// };
 
 export const nextSong = function () {
    let newIndex = this.currentIndex + 1;
@@ -142,13 +127,16 @@ export const randomSong = function () {
 };
 
 const resetForNewSong = () => {
-   timeSliderCurrent.style.width = "0%";
-   timeSliderHolder.style.transform = `translate(100%, -50%)`;
-   currentTimeEle.innerText = "00:00";
-   durationEle.innerText = "/ 00:00";
+   timeSlider.style.background = "#e1e1e1";
+   timeSliderHolder.style.left = `0`;
+   currentTimeEle.innerText = "0:00";
+   durationEle.innerText = "0:00";
+   setLocalStorage('current-time', 0)
 };
 
-const renderCurrentSong = (currentSong) => {
+const renderCurrentSong = (_this) => {
+   if (!_this.currentSong) return;
+
    const singerEle = $(".dashboard h4");
    const titleEle = $(".dashboard h2");
    const cdEle = $(".cd-img");
@@ -159,13 +147,13 @@ const renderCurrentSong = (currentSong) => {
       titleEl.style.transform = `translateX(0px)`;
    }
 
-   singerEle.innerText = currentSong.singer;
-   titleEle.innerText = currentSong.name;
+   singerEle.innerText = _this.currentSong.singer;
+   titleEle.innerText = _this.currentSong.name;
    cdEle.style.backgroundImage = `url(${
-      currentSong.image_url || "https://placehold.co/300"
+      _this.currentSong.image_url || "https://placehold.co/300"
    })`;
-   audioEle.src = currentSong.song_url;
-   document.title = currentSong.name;
+   audioEle.src = _this.currentSong.song_url;
+   document.title = _this.currentSong.name;
 };
 
 const toggleActive = function (_this) {
@@ -183,36 +171,33 @@ const toggleActive = function (_this) {
 };
 
 export const loadCurrentSong = function () {
-   onPauseHandle(this);
+   handleOnPause(this);
    resetForNewSong();
-
-   if (!actuallySongs) return console.log("can't load current song");
 
    const currentSong = actuallySongs[this.currentIndex];
    if (!currentSong) return console.log("can't load current song");
 
-   // set current song
    setLocalStorage("current", currentSong);
+   // setLocalStorage("current-time", 0);
    this.currentSong = currentSong;
 
-   renderCurrentSong(currentSong);
+   renderCurrentSong(this);
    toggleActive(this);
 };
 
-export const loadConfig = function () {
+export const loadLocalStorage = function () {
    this.isRepeat = getLocalStorageItem("isRepeat", false);
    this.isDark = getLocalStorageItem("isDark", false);
 
    const currentSong = getLocalStorageItem("current", null);
+   const currentTime = getLocalStorageItem("current-time", 0);
+
    this.currentSong = currentSong;
+   audioEle.currentTime = currentTime;
 
    if (window.innerWidth > 550) {
       const storageVolume = getLocalStorageItem("volume", 1);
-
-      volumeSliderCurrent.style.width = storageVolume * 100 + "%";
-
-      this.volume = storageVolume;
-      audioEle.volume = storageVolume;
+      updateVolume(storageVolume);
    }
 
    randomBtn.classList.toggle("active", this.isRandom);
@@ -220,18 +205,17 @@ export const loadConfig = function () {
 
    body.classList.toggle("dark", this.isDark);
    switchBtn.classList.toggle("dark", this.isDark);
-};
 
-export const loadCurrentSongFromLocalStorage = function () {
-   if (this.currentSong) renderCurrentSong(this.currentSong);
-   else this.isFirstLoadSong = false;
+   renderCurrentSong(this);
 };
 
 export const updateCurrentIndex = function () {
    if (!actuallySongs || !this.currentSong)
       return console.log("can't update current index");
 
-   const index = actuallySongs.findIndex((song) => song.id === this.currentSong.id);
+   const index = actuallySongs.findIndex(
+      (song) => song.id === this.currentSong.id
+   );
 
    if (index === -1) return;
 

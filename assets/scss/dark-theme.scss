@@ -22,8 +22,9 @@ body.dark {
       }
       .song-item {
          background-color: black;
-         .song-info {
-            color: #ccc;
+         color: white;
+         &.active {
+            background-color: #823d3d !important;
          }
       }
       .timeSliderCurrenth {
