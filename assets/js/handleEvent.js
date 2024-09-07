@@ -39,7 +39,7 @@ export default function handleEvent() {
    });
 
    cdImg.onclick = () => {
-      handleScrollActiveSongIntoView(_this.currentIndex);
+      handleScrollActiveSongIntoView(true);
    };
 
    window.onscroll = function () {
@@ -145,5 +145,8 @@ export default function handleEvent() {
       rePeatBtn.classList.toggle("active", value);
    };
 
-   gotopBtn.onclick = () => handleScrollActiveSongIntoView(0);
+   gotopBtn.onclick = () => {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+   }
 }

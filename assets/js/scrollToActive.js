@@ -9,15 +9,15 @@ const scrollToActive = function (activeSongEle) {
    }, 200);
 };
 
-export default function handleScrollActiveSongIntoView(curIndex) {
+export default function handleScrollActiveSongIntoView(force) {
    const isDesktop = window.innerWidth >= 724;
 
    const activeSongEle = document.querySelector(".song-item.active");
    if (!activeSongEle) return;
 
-   if (curIndex !== undefined) return scrollToActive(songElements[curIndex]);
-
    const rect = activeSongEle.getBoundingClientRect();
+
+   if (force) return scrollToActive(activeSongEle);
 
    const playerHeight = dashboard.offsetHeight;
    const topCondition = isDesktop ? rect.top > 0 : rect.top > playerHeight;
@@ -25,5 +25,6 @@ export default function handleScrollActiveSongIntoView(curIndex) {
 
    if (topCondition && bottomCondition) {
       scrollToActive(activeSongEle);
+      console.log("scroll");
    }
 }
