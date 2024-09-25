@@ -131,7 +131,7 @@ const resetForNewSong = () => {
    timeSliderHolder.style.left = `0`;
    currentTimeEle.innerText = "0:00";
    durationEle.innerText = "0:00";
-   setLocalStorage('current-time', 0)
+   setLocalStorage("current-time", 0);
 };
 
 const renderCurrentSong = (_this) => {
@@ -205,6 +205,12 @@ export const loadLocalStorage = function () {
 
    body.classList.toggle("dark", this.isDark);
    switchBtn.classList.toggle("dark", this.isDark);
+   if (this.isDark) {
+      const meta = document.querySelector(".my-tag");
+      if (meta) {
+         meta.setAttribute("content", "#333");
+      }
+   }
 
    renderCurrentSong(this);
 };
