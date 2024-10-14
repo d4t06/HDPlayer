@@ -17,7 +17,6 @@ const handleMenuEvents = (_this) => {
    const songListSelect = $("#songListSelect");
    const toggleInfoBtn = $(".toggle-info");
    // const player = $(".player");
-
    // _this.setSettings();
 
    // handle open sub menu
@@ -36,12 +35,17 @@ const handleMenuEvents = (_this) => {
 
    // handle on dark mode
    switchBtn.onclick = () => {
-      const value = !_this.isDark;
-      _this.isDark = value;
+      const newIsDark = !_this.isDark;
 
-      console.log('toggle');
+      _this.isDark = newIsDark;
+      setLocalStorage("isDark", newIsDark);
 
-      setLocalStorage("isDark", value);
+      const meta = document.querySelector(".my-tag");
+
+      if (meta) {
+         if (newIsDark) meta.setAttribute("content", "#333");
+         else meta.setAttribute("content", "#fff");
+      }
 
       const body = $("body");
       body.classList.toggle("dark", _this.isDark);

@@ -3,7 +3,10 @@
    "version": "1.0.0",
    "description": "This is a static template",
    "scripts": {
-      "deploy": "gh-pages -d dist"
+      "deploy": "gh-pages -d dist",
+      "dev": "npx gulp watch",
+      "build": "npx gulp build"
+
    },
    "dependencies": {
       "browser-sync": "^2.29.3",
