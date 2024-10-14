@@ -1,7 +1,7 @@
 import {
    audio,
-   cd,
-   cdImg,
+   // cd,
+   // cdImg,
    gotopBtn,
    musicVolume,
    nextBtn,
@@ -12,7 +12,7 @@ import {
    timeSlider,
 } from "./constant.js";
 import { updateVolume } from "./handleAudioEvent.js";
-import handleScrollActiveSongIntoView from "./scrollToActive.js";
+// import handleScrollActiveSongIntoView from "./scrollToActive.js";
 import { setLocalStorage } from "./utils/appHelper.js";
 
 const $$ = document.querySelectorAll.bind(document);
@@ -21,7 +21,7 @@ export default function handleEvent() {
    const _this = this;
    const songElements = $$(".song-item");
 
-   const cdWidth = cd.offsetWidth;
+   // const cdWidth = cd.offsetWidth;
    const isDesktop = window.innerWidth >= 724;
 
    // >>> play song when click
@@ -38,30 +38,30 @@ export default function handleEvent() {
       };
    });
 
-   cdImg.onclick = () => {
-      handleScrollActiveSongIntoView(true);
-   };
+   // cdImg.onclick = () => {
+   //    handleScrollActiveSongIntoView(true);
+   // };
 
-   window.onscroll = function () {
-      if (isDesktop) return;
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+   // window.onscroll = function () {
+   //    if (isDesktop) return;
+   //    const scrollTop = window.scrollY || document.documentElement.scrollTop;
 
-      const newCdWidth = cdWidth - scrollTop / 2;
-      const newOpacity = newCdWidth / cdWidth;
+   //    const newCdWidth = cdWidth - scrollTop / 2;
+   //    const newOpacity = newCdWidth / cdWidth;
 
-      if (newCdWidth < 0) {
-         cd.style.width = 0 + "px";
-         cd.style.opacity = 0;
+   //    if (newCdWidth < 0) {
+   //       cd.style.width = 0 + "px";
+   //       cd.style.opacity = 0;
 
-         gotopBtn.classList.add("show");
-         return;
-      }
+   //       gotopBtn.classList.add("show");
+   //       return;
+   //    }
 
-      cd.style.width = newCdWidth + "px";
-      cd.style.opacity = newOpacity;
+   //    cd.style.width = newCdWidth + "px";
+   //    cd.style.opacity = newOpacity;
 
-      gotopBtn.classList.remove("show");
-   };
+   //    gotopBtn.classList.remove("show");
+   // };
 
    musicVolume.onclick = function (e) {
       let volumeBaseWidth = musicVolume.offsetWidth;

@@ -60,7 +60,7 @@ export const render = function () {
 
    if (actuallySongs.length) {
       actuallySongs.forEach((song) => {
-         songListHTML += `<li class="song-item ${
+         songListHTML += `<div class="song-item ${
             this.currentSong && this.currentSong.id === song.id ? "active" : ""
          }" id="${song.id}">
             <div class="song-frame" style="background-color: ${generateHSL(
@@ -72,10 +72,7 @@ export const render = function () {
               <h2>${song.name}</h2>
               <h4>${song.singer}</h4>
             </div>
-            <div class="song-detail">
-              <i class="fa-solid fa-ellipsis-vertical"></i>
-            </div>
-          </li>`;
+          </div>`;
       });
    } else return (songListHTML += "<h1>Error when render songs</h1>");
 
@@ -139,8 +136,9 @@ const renderCurrentSong = (_this) => {
 
    const singerEle = $(".dashboard h4");
    const titleEle = $(".dashboard h2");
-   const cdEle = $(".cd-img");
+   // const cdEle = $(".cd-img");
    const titleEl = $(".title-wrapper h2");
+   const songInfoSmall = $(".song-info-small");
 
    if (titleEle.style.transition !== "unset") {
       titleEl.style.transition = `unset`;
@@ -149,11 +147,14 @@ const renderCurrentSong = (_this) => {
 
    singerEle.innerText = _this.currentSong.singer;
    titleEle.innerText = _this.currentSong.name;
-   cdEle.style.backgroundImage = `url(${
-      _this.currentSong.image_url || "https://placehold.co/300"
-   })`;
+   
+   // cdEle.style.backgroundImage = `url(${
+   //    _this.currentSong.image_url || "https://placehold.co/300"
+   // })`;
    audioEle.src = _this.currentSong.song_url;
    document.title = _this.currentSong.name;
+
+   songInfoSmall.innerText = `${_this.currentSong.name} - ${_this.currentSong.singer}`
 };
 
 const toggleActive = function (_this) {

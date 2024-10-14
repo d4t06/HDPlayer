@@ -1,14 +1,15 @@
+@import "common";
+
 .player {
-   min-height: 100vh;
+   position: fixed;
+   inset: 0;
+   display: flex;
+   flex-direction: column;
    .dashboard-container {
       display: flex;
       align-items: center;
       background-color: #fff;
       border-bottom: 8px solid #e1e1e1;
-      width: 100%;
-      position: fixed;
-      top: 0;
-      left: 0;
 
       .dashboard {
          display: flex;
@@ -17,49 +18,108 @@
          width: 100%;
       }
 
-      .title-wrapper {
-         overflow: hidden;
-         position: relative;
-         width: 90%;
-         margin: 0 auto;
-         height: 30px;
-         -webkit-mask-image: linear-gradient(
-            90deg,
-            hsla(0, 0%, 100%, 0),
-            hsla(0, 0%, 100%, 0.8) 1%,
-            #fff 1%,
-            #fff 99%,
-            hsla(0, 0%, 100%, 0.8) 1%,
-            hsla(0, 0%, 100%, 0)
-         );
+      @mixin hide {
+         pointer-events: none;
+         height: 0;
+         opacity: 0;
+         margin: 0;
+         padding: 0;
+      }
 
-         h2 {
-            position: absolute;
-            white-space: nowrap;
-            left: 0;
-            min-width: 100%;
-            font-size: 2.5rem;
-            font-weight: 500;
+      .song-info {
+         position: relative;
+         margin-top: 8px;
+         cursor: pointer;
+
+         &.hide {
+            @include hide();
+         }
+
+         .title-wrapper {
+            overflow: hidden;
+            position: relative;
+            width: 90%;
+            margin: 0 auto;
+            height: 30px;
+
+            h2 {
+               position: absolute;
+               white-space: nowrap;
+               left: 0;
+               min-width: 100%;
+               font-size: 2.5rem;
+               font-weight: 500;
+               text-align: center;
+            }
+         }
+         h4 {
             text-align: center;
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: #f35858;
+            width: 80%;
+            margin: 0 auto;
+         }
+
+         .musical-note {
+            position: absolute;
+            top: 0;
+            right: 0;
+            color: #666;
          }
       }
-      h4 {
-         text-align: center;
+
+      .song-info-small {
          font-size: 1.4rem;
-         font-weight: 500;
-         color: #f35858;
-         width: 90%;
-         margin: 20px auto 0;
+         color: #666;
+         margin-top: 8px;
+         text-align: center;
+
+         &.hide {
+            @include hide();
+         }
+      }
+
+      .song-lyric {
+         cursor: pointer;
+         position: relative;
+         height: 30vh;
+         padding-top: 12px;
+         overflow: auto;
+         text-align: center;
+         color: #666;
+         font-size: 2.4rem;
+         font-weight: 700;
+
+         @include sm {
+            font-size: 2.8rem;
+         }
+
+         &.hide {
+            @include hide();
+         }
+
+         .lyric {
+            padding-top: 20px;
+            &.active {
+               color: #f35858;
+            }
+
+            &:last-child {
+               padding-bottom: 10vh;
+            }
+         }
       }
 
       //   menu button
       .openMenu {
          position: absolute;
+         display: flex;
+         align-items: center;
          color: #666;
-         top: 7px;
-         left: 5px;
-         font-size: 2rem;
-         padding: 5px;
+         top: 4px;
+         left: 4px;
+         padding: 4px;
       }
 
       .slider {
@@ -96,14 +156,14 @@
          cursor: pointer;
          border-radius: 5px;
 
-         @media screen and (min-width: 550px) {
+         @include sm {
             margin-top: 30px;
          }
       }
 
       .volume-slider {
          display: none;
-         @media screen and (min-width: 550px) {
+         @include sm {
             display: block;
          }
       }
@@ -120,23 +180,29 @@
          }
       }
 
-      .cd {
-         margin: 10px auto 10px;
-         width: 200px;
-         display: flex;
-         .cd-img {
-            padding-top: 100%;
-            background-size: cover;
-            background-position: center;
-            border-radius: 50%;
-            width: 100%;
-            animation: spin 12s linear infinite paused;
-         }
-      }
+      // .cd {
+      //    margin: 10px auto 10px;
+      //    width: 200px;
+      //    display: flex;
+      //    .cd-img {
+      //       padding-top: 100%;
+      //       background-size: cover;
+      //       background-position: center;
+      //       border-radius: 50%;
+      //       width: 100%;
+      //       animation: spin 12s linear infinite paused;
+      //    }
+      // }
 
       .control {
          display: flex;
          justify-content: space-between;
+         margin-top: 12px;
+
+         @media screen and (min-width: 550px) {
+            margin-top: 30px;
+         }
+
          .btn {
             display: flex;
             align-items: center;
@@ -144,6 +210,8 @@
             color: #666;
             height: 40px;
             width: 40px;
+            cursor: pointer;
+
             &.active {
                color: rgb(243, 88, 88);
             }
@@ -185,5 +253,12 @@
             }
          }
       }
+   }
+
+   .song-list {
+      position: relative;
+      flex-grow: 1;
+      overflow: auto;
+      padding: 0 8px 10px;
    }
 }

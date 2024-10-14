@@ -10,7 +10,7 @@ import {
    volumeSliderHolder,
    audio,
 } from "./constant.js";
-import handleScrollActiveSongIntoView from "./scrollToActive.js";
+// import handleScrollActiveSongIntoView from "./scrollToActive.js";
 
 const $ = document.querySelector.bind(document);
 
@@ -20,7 +20,7 @@ let setLocalStorageTimerId = 0;
 export const handleOnPause = function (_this) {
    playBtn.classList.remove("playing");
    _this.isPlaying = false;
-   cdImg.style.animationPlayState = "paused";
+   // cdImg.style.animationPlayState = "paused";
 
    clearInterval(setLocalStorageTimerId);
 };
@@ -104,7 +104,7 @@ export default function handleAudioEvent() {
 
       _this.isPlaying = true;
       _this.isWaiting = false;
-      cdImg.style.animationPlayState = "running";
+      // cdImg.style.animationPlayState = "running";
 
       setLocalStorageTimerId = setInterval(() => {
          setLocalStorage("current-time", Math.ceil(audio.currentTime));
@@ -147,7 +147,7 @@ export default function handleAudioEvent() {
       if (_this.endOfList) {
          _this.endOfList = false;
       } else if (!_this.isPlaying) {
-         handleScrollActiveSongIntoView();
+         // handleScrollActiveSongIntoView();
          scrollText();
          audio.play();
       }

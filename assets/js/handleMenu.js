@@ -16,7 +16,7 @@ const handleMenuEvents = (_this) => {
    const switchBtn = $(".switch");
    const songListSelect = $("#songListSelect");
    const toggleInfoBtn = $(".toggle-info");
-   const player = $(".player");
+   // const player = $(".player");
 
    // _this.setSettings();
 
@@ -38,6 +38,9 @@ const handleMenuEvents = (_this) => {
    switchBtn.onclick = () => {
       const value = !_this.isDark;
       _this.isDark = value;
+
+      console.log('toggle');
+
       setLocalStorage("isDark", value);
 
       const body = $("body");

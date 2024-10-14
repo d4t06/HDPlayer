@@ -110,14 +110,26 @@
       }
 
       .switch {
-         display: inline-flex;
-         align-items: center;
-         justify-content: space-evenly;
-         position: relative;
-         height: 26px;
-         width: 50px;
          border-radius: 99px;
          background: #eeee;
+
+         &__wrapped {
+            position: relative;
+            margin: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            &::before {
+               content: "";
+               position: absolute;
+               height: 100%;
+               background-color: #fff;
+               width: 18px;
+               border-radius: 50%;
+               transition: transform linear .25s;
+               left: 0;
+            }
+         }
 
          .sun {
             color: #f39c12;
@@ -125,32 +137,21 @@
 
          .moon {
             color: #f1c40f;
-         }
-
-         &::before {
-            content: "";
-            display: block;
-            position: absolute;
-            height: 20px;
-            background-color: #fff;
-            width: 20px;
-            border-radius: 50%;
-            right: 2px;
-            transition: transform 0.2s linear;
+            margin-left: 4px;
          }
 
          &.dark {
             background-color: #555;
-            &::before {
-               right: unset;
-               transform: translateX(-12px);
+            .switch__wrapped::before {
+               left: unset;
+               transform: translateX(calc(100% + 4px));
             }
          }
       }
    }
 
    .cr {
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       position: absolute;
       bottom: 30px;
       left: 10px;

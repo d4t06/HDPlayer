@@ -6,12 +6,6 @@
       <meta http-equiv="X-UA-Compatible" content="ie=edge" />
       <title>HD Player</title>
       <link rel="icon" type="image/png" href="./assets/images/ico.png" />
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-      <link
-         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-         rel="stylesheet"
-      />
       <!-- build:css css/all.css -->
       <link rel="stylesheet" href="./assets/css/index.css" />
       <link rel="stylesheet" href="./assets/css/dashboard.css" />
@@ -19,11 +13,10 @@
       <link rel="stylesheet" href="./assets/css/menu.css" />
       <link rel="stylesheet" href="./assets/css/dark-theme.css" />
       <link rel="stylesheet" href="./assets/css/song-item.css" />
-      <link rel="stylesheet" href="./assets/css/song-list.css" />
       <link rel="stylesheet" href="./assets/css/responsive.css" />
       <!-- /build -->
 
-      <!-- build:replace  <script type="module" src="./js/main.js" defer></script> -->
+      <!-- build:replace  <script type="module" src="js/main.js" defer></script> -->
       <script type="module" src="./assets/js/main.js" defer></script>
       <!-- /build -->
    </head>
@@ -32,41 +25,62 @@
          <div class="dashboard-container">
             <div class="dashboard">
                <!-- header -->
-               <h4>Name</h4>
-               <div class="title-wrapper">
-                  <h2 class="title">singer</h2>
+               <div class="song-info">
+                  <h4>Name</h4>
+                  <div class="title-wrapper mask">
+                     <h2 class="title">singer</h2>
+                  </div>
+
+                  <svg
+                     xmlns="http://www.w3.org/2000/svg"
+                     fill="none"
+                     viewBox="0 0 24 24"
+                     stroke-width="1.5"
+                     stroke="currentColor"
+                     style="width: 20px"
+                     class="musical-note"
+                  >
+                     <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="m9 9 10.5-3m0 6.553v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 1 1-.99-3.467l2.31-.66a2.25 2.25 0 0 0 1.632-2.163Zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 0 1-.99-3.467l2.31-.66A2.25 2.25 0 0 0 9 15.553Z"
+                     />
+                  </svg>
                </div>
+
+               <div class="song-lyric mask-vertical no-scrollbar hide"></div>
+
+               <div class="song-info-small hide"></div>
+
                <label class="openMenu" for="input">
-                  <span>
-                     <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        width="25px"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        class="w-6 h-6"
-                     >
-                        <path
-                           stroke-linecap="round"
-                           stroke-linejoin="round"
-                           d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                        />
-                     </svg>
-                  </span>
+                  <svg
+                     xmlns="http://www.w3.org/2000/svg"
+                     fill="none"
+                     width="25px"
+                     viewBox="0 0 24 24"
+                     stroke-width="1.5"
+                     stroke="currentColor"
+                     class="w-6 h-6"
+                  >
+                     <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                     />
+                  </svg>
                </label>
 
                <!-- CD -->
-               <div class="cd">
+               <!-- <div class="cd">
                   <div
                      class="cd-img"
                      style="background-image: url(https://placehold.co/300)"
                   ></div>
-               </div>
+               </div> -->
 
-               <!--Control -->
+               <!-- Control -->
                <div class="control">
-                  <div class="repeat-btn btn">
+                  <button class="repeat-btn btn">
                      <span>
                         <svg
                            xmlns="http://www.w3.org/2000/svg"
@@ -83,8 +97,8 @@
                            />
                         </svg>
                      </span>
-                  </div>
-                  <div class="prev-btn btn">
+                  </button>
+                  <button class="prev-btn btn">
                      <span>
                         <svg
                            xmlns="http://www.w3.org/2000/svg"
@@ -102,8 +116,8 @@
                            />
                         </svg>
                      </span>
-                  </div>
-                  <div class="play-btn btn">
+                  </button>
+                  <button class="play-btn btn">
                      <span class="play-icon">
                         <svg
                            xmlns="http://www.w3.org/2000/svg"
@@ -156,8 +170,8 @@
                            />
                         </svg>
                      </span>
-                  </div>
-                  <div class="next-btn btn">
+                  </button>
+                  <button class="next-btn btn">
                      <span>
                         <svg
                            xmlns="http://www.w3.org/2000/svg"
@@ -175,8 +189,8 @@
                            />
                         </svg>
                      </span>
-                  </div>
-                  <div class="random-btn btn">
+                  </button>
+                  <button class="random-btn btn">
                      <span>
                         <svg
                            xmlns="http://www.w3.org/2000/svg"
@@ -194,7 +208,7 @@
                            />
                         </svg>
                      </span>
-                  </div>
+                  </button>
                </div>
 
                <div
@@ -251,10 +265,22 @@
             </div>
          </div>
 
-         <div class="playlist">
-            <ul class="song-list">
-               <p>Loading...</p>
-            </ul>
+         <div class="song-list no-scrollbar">
+            <div class="center">
+               <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  class="spin"
+                  style="width: 24px"
+               >
+                  <path
+                     fill-rule="evenodd"
+                     d="M15.312 11.424a5.5 5.5 0 0 1-9.201 2.466l-.312-.311h2.433a.75.75 0 0 0 0-1.5H3.989a.75.75 0 0 0-.75.75v4.242a.75.75 0 0 0 1.5 0v-2.43l.31.31a7 7 0 0 0 11.712-3.138.75.75 0 0 0-1.449-.39Zm1.23-3.723a.75.75 0 0 0 .219-.53V2.929a.75.75 0 0 0-1.5 0V5.36l-.31-.31A7 7 0 0 0 3.239 8.188a.75.75 0 1 0 1.448.389A5.5 5.5 0 0 1 13.89 6.11l.311.31h-2.432a.75.75 0 0 0 0 1.5h4.243a.75.75 0 0 0 .53-.219Z"
+                     clip-rule="evenodd"
+                  />
+               </svg>
+            </div>
          </div>
 
          <div class="go-top-btn">
@@ -282,7 +308,9 @@
          <div class="menu-header">
             <div class="menu-header-user isVip">
                <div class="image-frame">
+                  <!-- build:replace  <img src="images/myAvatar.jpg" alt="" /> -->
                   <img src="./assets/images/myAvatar.jpg" alt="" />
+                  <!-- /build -->
                </div>
                <h2>datnh</h2>
                <span class="crown-icon"><i class="fa-solid fa-crown"></i></span>
@@ -311,38 +339,40 @@
                <li class="list-item">
                   <span href="#">Theme</span>
                   <div class="switch">
-                     <!-- <i class="sun theme-icon "> -->
-                     <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        width="18px"
-                        class="sun"
-                     >
-                        <path
-                           stroke-linecap="round"
-                           stroke-linejoin="round"
-                           d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
-                        />
-                     </svg>
+                     <div class="switch__wrapped">
+                        <!-- <i class="sun theme-icon "> -->
+                        <svg
+                           xmlns="http://www.w3.org/2000/svg"
+                           fill="none"
+                           viewBox="0 0 24 24"
+                           stroke-width="1.5"
+                           stroke="currentColor"
+                           width="18px"
+                           class="sun"
+                        >
+                           <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+                           />
+                        </svg>
 
-                     <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        width="18px"
-                        class="moon"
-                     >
-                        <path
-                           stroke-linecap="round"
-                           stroke-linejoin="round"
-                           d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
-                        />
-                     </svg>
+                        <svg
+                           xmlns="http://www.w3.org/2000/svg"
+                           fill="none"
+                           viewBox="0 0 24 24"
+                           stroke-width="1.5"
+                           stroke="currentColor"
+                           width="18px"
+                           class="moon"
+                        >
+                           <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
+                           />
+                        </svg>
+                     </div>
                   </div>
                </li>
                <li class="list-item">
@@ -357,7 +387,7 @@
             </ul>
             <p class="cr">
                Make with ❤️ by d4t06 <br />
-               © All rights no reserved ¯\_(ツ)_/¯
+               © All rights no reserve ¯\_(ツ)_/¯
             </p>
             <div class="level2">
                <div class="level2-content">
@@ -382,7 +412,9 @@
 
                   <div class="info-submenu">
                      <div class="user-img">
+                        <!-- build:replace  <img src="images/myAvatar.jpg" alt="" /> -->
                         <img src="./assets/images/myAvatar.jpg" alt="" />
+                        <!-- /build -->
                      </div>
                      <div class="user-overall">
                         <p class="user-name">Nguyễn Hữu Đạt ❤️</p>

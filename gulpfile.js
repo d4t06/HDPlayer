@@ -32,7 +32,12 @@ function watchScss() {
 }
 
 function buildImage() {
-   return gulp.src("assets/images/*").pipe(gulp.dest("dist/assets/images"));
+   return gulp.src("assets/images/*").pipe(gulp.dest("dist/images"));
+}
+
+
+function buildFonts() {
+   return gulp.src("assets/fonts/*").pipe(gulp.dest("dist/fonts"));
 }
 
 function buildJs() {
@@ -94,4 +99,4 @@ function watch() {
 exports.watch = gulp.series(watchScss, watch);
 exports.preview = preview;
 
-exports.build = gulp.series(buildHtml, buildScss, buildJs, buildImage);
+exports.build = gulp.series(buildHtml, buildScss, buildJs, buildImage, buildFonts);

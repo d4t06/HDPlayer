@@ -2,11 +2,45 @@
    margin: 0;
    padding: 0;
    box-sizing: border-box;
-   font-family: "Montserrat", sans-serif;
+}
+
+@font-face {
+   font-family: "Nunito";
+   font-style: normal;
+   font-weight: 400;
+   font-display: swap;
+   src: url(../fonts/Nunito-Regular.ttf);
+}
+
+@font-face {
+   font-family: "Nunito";
+   font-style: normal;
+   font-weight: 500;
+   font-display: swap;
+   src: url(../fonts/Nunito-Medium.ttf);
+}
+
+@font-face {
+   font-family: "Nunito";
+   font-style: normal;
+   font-weight: 600;
+   font-display: swap;
+   src: url(../fonts/Nunito-SemiBold.ttf);
+}
+
+@font-face {
+   font-family: "Nunito";
+   font-style: normal;
+   font-weight: 700;
+   font-display: swap;
+   src: url(../fonts/Nunito-Bold.ttf);
 }
 
 html {
    font-size: 62.5%;
+   font-family: "Nunito", system-ui, -apple-system, BlinkMacSystemFont,
+      "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+      "Helvetica Neue", sans-serif;
 }
 
 body {
@@ -18,4 +52,49 @@ body {
       -webkit-transform: rotate(360deg);
       transform: rotate(360deg);
    }
+}
+
+.spin {
+   animation: spin 2s linear infinite;
+}
+
+.mask {
+   -webkit-mask-image: linear-gradient(
+      90deg,
+      hsla(0, 0%, 100%, 0),
+      hsla(0, 0%, 100%, 0.8) 1%,
+      #fff 1%,
+      #fff 99%,
+      hsla(0, 0%, 100%, 0.8) 1%,
+      hsla(0, 0%, 100%, 0)
+   );
+}
+
+.mask-vertical {
+   -webkit-mask-image: linear-gradient(
+      180deg,
+      hsla(0, 0%, 100%, 0),
+      hsla(0, 0%, 100%, 0.8) 10%,
+      #fff 25%,
+      #fff 75%,
+      hsla(0, 0%, 100%, 0.8) 90%,
+      hsla(0, 0%, 100%, 0)
+   );
+}
+
+.no-scrollbar {
+   -ms-overflow-style: none;
+   scrollbar-width: none;
+}
+
+.center {
+   height: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+button {
+   border: none;
+   background-color: unset;
 }

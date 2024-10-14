@@ -19,7 +19,14 @@ body.dark {
          .timeSlider {
             background-color: #333;
          }
+
+         .song-lyric {
+            .lyric.active {
+               color: #ffed00;
+            }
+         }
       }
+
       .song-item {
          background-color: black;
          color: white;

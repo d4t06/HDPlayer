@@ -13,6 +13,7 @@ import {
 import handleAudioEvent from "./handleAudioEvent.js";
 import handleEvent from "./handleEvent.js";
 import handleMenu from "./handleMenu.js";
+import songLyric from "./songLyric.js";
 
 const app = {
    isRepeat: false,
@@ -43,6 +44,9 @@ const app = {
    handleEvent,
    handleAudioEvent,
 
+   // components
+   songLyric,
+
    start: async function () {
       this.handleAudioEvent();
 
@@ -59,6 +63,9 @@ const app = {
       this.updateCurrentIndex();
 
       this.handleMenu();
+
+      // components
+      this.songLyric();
    },
 };
 

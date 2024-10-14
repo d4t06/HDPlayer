@@ -1,7 +1,7 @@
-const $ = document.querySelector.bind(document);
+export const $ = document.querySelector.bind(document);
 export const dashboard = $(".dashboard");
 export const songlist = $(".song-list");
-export const cd = $(".cd");
+// export const cd = $(".cd");
 export const audio = $(".audio");
 export const cdImg = $(".cd-img");
 export const playBtn = $(".play-btn");
