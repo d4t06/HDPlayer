@@ -1,7 +1,5 @@
 import {
    audio,
-   // cd,
-   // cdImg,
    gotopBtn,
    musicVolume,
    nextBtn,
@@ -12,7 +10,6 @@ import {
    timeSlider,
 } from "./constant.js";
 import { updateVolume } from "./handleAudioEvent.js";
-// import handleScrollActiveSongIntoView from "./scrollToActive.js";
 import { setLocalStorage } from "./utils/appHelper.js";
 
 const $$ = document.querySelectorAll.bind(document);
@@ -22,7 +19,7 @@ export default function handleEvent() {
    const songElements = $$(".song-item");
 
    // const cdWidth = cd.offsetWidth;
-   const isDesktop = window.innerWidth >= 724;
+   // const isDesktop = window.innerWidth >= 724;
 
    // >>> play song when click
    songElements.forEach((song, index) => {
@@ -42,26 +39,12 @@ export default function handleEvent() {
    //    handleScrollActiveSongIntoView(true);
    // };
 
-   // window.onscroll = function () {
-   //    if (isDesktop) return;
-   //    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+   window.onscroll = function () {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
 
-   //    const newCdWidth = cdWidth - scrollTop / 2;
-   //    const newOpacity = newCdWidth / cdWidth;
-
-   //    if (newCdWidth < 0) {
-   //       cd.style.width = 0 + "px";
-   //       cd.style.opacity = 0;
-
-   //       gotopBtn.classList.add("show");
-   //       return;
-   //    }
-
-   //    cd.style.width = newCdWidth + "px";
-   //    cd.style.opacity = newOpacity;
-
-   //    gotopBtn.classList.remove("show");
-   // };
+      if (scrollTop > 100) gotopBtn.classList.add("show");
+      else gotopBtn.classList.remove("show");
+   };
 
    musicVolume.onclick = function (e) {
       let volumeBaseWidth = musicVolume.offsetWidth;
@@ -107,7 +90,7 @@ export default function handleEvent() {
       if (!_this.isPlaying && !this.isWaiting) {
          console.log("playe");
 
-         audio.play()
+         audio.play();
       }
    };
 
@@ -148,5 +131,5 @@ export default function handleEvent() {
    gotopBtn.onclick = () => {
       document.body.scrollTop = 0; // For Safari
       document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-   }
+   };
 }

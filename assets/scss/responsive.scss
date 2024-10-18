@@ -1,13 +1,19 @@
 @import "common";
 
-
 @include sm {
    .player {
-      flex-direction: row;
+      display: flex;
+      height: 100vh;
 
-      .dashboard-container {
+      .dashboard {
+         position: relative;
          width: 50%;
          border: none;
+
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         height: 100%;
 
          .volume-slider {
             height: 6px;
@@ -22,7 +28,9 @@
       }
 
       .song-list {
+         width: 50%;
          padding-top: 10px;
+         overflow: auto;
       }
 
       .duration {

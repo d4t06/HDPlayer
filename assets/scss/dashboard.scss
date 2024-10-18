@@ -1,22 +1,14 @@
 @import "common";
 
 .player {
-   position: fixed;
-   inset: 0;
-   display: flex;
-   flex-direction: column;
-   .dashboard-container {
-      display: flex;
-      align-items: center;
+   .dashboard {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1;
       background-color: #fff;
       border-bottom: 8px solid #e1e1e1;
-
-      .dashboard {
-         display: flex;
-         flex-direction: column;
-         padding: 16px 20px 16px;
-         width: 100%;
-      }
+      padding: 16px 20px 16px;
 
       @mixin hide {
          pointer-events: none;
@@ -74,6 +66,9 @@
          color: #666;
          margin-top: 8px;
          text-align: center;
+         text-overflow: ellipsis;
+         white-space: nowrap;
+         overflow: hidden;
 
          &.hide {
             @include hide();
@@ -180,43 +175,29 @@
          }
       }
 
-      // .cd {
-      //    margin: 10px auto 10px;
-      //    width: 200px;
-      //    display: flex;
-      //    .cd-img {
-      //       padding-top: 100%;
-      //       background-size: cover;
-      //       background-position: center;
-      //       border-radius: 50%;
-      //       width: 100%;
-      //       animation: spin 12s linear infinite paused;
-      //    }
-      // }
-
       .control {
          display: flex;
          justify-content: space-between;
          margin-top: 12px;
 
-         @media screen and (min-width: 550px) {
+         @include sm {
             margin-top: 30px;
          }
 
          .btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #666;
-            height: 40px;
-            width: 40px;
             cursor: pointer;
+            color: #666;
+
+            span {
+               display: flex;
+               height: 40px;
+               width: 40px;
+               align-items: center;
+               justify-content: center;
+            }
 
             &.active {
                color: rgb(243, 88, 88);
-            }
-            span {
-               display: inline-flex;
             }
          }
 
@@ -234,7 +215,7 @@
 
             &.playing {
                .pause-icon {
-                  display: inline-flex;
+                  display: flex;
                }
                .play-icon {
                   display: none;
@@ -245,7 +226,7 @@
             }
             &.waiting {
                .wait-icon {
-                  display: inline-flex;
+                  display: flex;
                }
                .play-icon {
                   display: none;
@@ -256,9 +237,40 @@
    }
 
    .song-list {
-      position: relative;
-      flex-grow: 1;
-      overflow: auto;
       padding: 0 8px 10px;
+      position: relative;
+      padding-top: 210px;
+   }
+
+   .go-top-btn {
+      position: fixed;
+      padding: 8px;
+      transform: translateY(10px);
+      transition: transform linear 0.25s, opacity linear 0.25s;
+      opacity: 0;
+      pointer-events: none;
+
+      bottom: 20px;
+      right: 20px;
+
+      background-color: #ccc;
+      border-radius: 50%;
+
+      &.show {
+         transform: translateY(0);
+         opacity: 1;
+         pointer-events: all;
+      }
+   }
+
+   &.expand {
+      .song-list {
+         padding-top: 350px;
+      }
+      @include sm() {
+         .song-list {
+            padding-top: 10px;
+         }
+      }
    }
 }

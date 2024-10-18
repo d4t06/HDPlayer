@@ -4,7 +4,7 @@
    "description": "This is a static template",
    "scripts": {
       "deploy": "gh-pages -d dist",
-      "dev": "npx gulp watch",
+      "start": "npx gulp watch",
       "build": "npx gulp build"
 
    },

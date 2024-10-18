@@ -1,7 +1,7 @@
-### Start your app
+### Start the app
 ```
 npm i
-npm run dev
+npm run start
 ```
 
 
@@ -9,3 +9,8 @@ npm run dev
 - Pause => resetForNewSong => Load current song => active song => load meta => play
 - Remove min-width
 - Using firestore database
+
+
+### update 18/10/2024
+- Use next-mp3 backend server
+- Fix ui on old browser

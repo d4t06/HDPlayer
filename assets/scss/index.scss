@@ -47,6 +47,10 @@ body {
    background-color: #e1e1e1;
 }
 
+svg {
+   display: block;
+}
+
 @keyframes spin {
    100% {
       -webkit-transform: rotate(360deg);

@@ -1,22 +1,4 @@
-.player {
-   .go-top-btn {
-      display: none;
-      position: fixed;
-      height: 40px;
-      width: 40px;
 
-      align-items: center;
-      justify-content: center;
-      background-color: #ccc;
-      border-radius: 50%;
-      bottom: 20px;
-      right: 20px;
-
-      &.show {
-         display: flex;
-      }
-   }
-}
 
 #input:checked ~ .modal_overplay {
    display: block;

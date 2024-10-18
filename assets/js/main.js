@@ -19,7 +19,7 @@ const app = {
    isRepeat: false,
    isRandom: false,
    isPlaying: false,
-   isWaiting: false,
+   isWaiting: true,
 
    isFirstLoadSong: true,
    currentIndex: 0,

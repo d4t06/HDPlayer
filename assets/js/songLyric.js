@@ -1,4 +1,4 @@
-import { audio } from "./constant.js";
+import { audio, player } from "./constant.js";
 
 const LYRIC_TIME_BOUNDED = 0.3;
 
@@ -32,6 +32,7 @@ export default function songLyric() {
       else scrollBehavior = "instant";
 
       songInfoEle.classList.toggle("hide", isOpenLyric);
+      player.classList.toggle("expand", isOpenLyric);
 
       songInfoSmallEle.classList.toggle("hide", !isOpenLyric);
       songLyricEle.classList.toggle("hide", !isOpenLyric);

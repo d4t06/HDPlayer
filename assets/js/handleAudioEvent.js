@@ -18,7 +18,7 @@ let intervalId = null;
 let setLocalStorageTimerId = 0;
 
 export const handleOnPause = function (_this) {
-   playBtn.classList.remove("playing");
+   playBtn.classList.remove("playing", "waiting");
    _this.isPlaying = false;
    // cdImg.style.animationPlayState = "paused";
 
@@ -99,8 +99,8 @@ export default function handleAudioEvent() {
 
    //  >>> audio handle
    audio.onplaying = function () {
-      playBtn.classList.add("playing");
       playBtn.classList.remove("waiting");
+      playBtn.classList.add("playing");
 
       _this.isPlaying = true;
       _this.isWaiting = false;
@@ -136,8 +136,16 @@ export default function handleAudioEvent() {
       clearInterval(setLocalStorageTimerId);
    };
 
+   audio.addEventListener("loadstart", () => {
+      this.isWaiting = true;
+      playBtn.classList.add("waiting");
+   });
+
    audio.addEventListener("loadedmetadata", (e) => {
       durationEle.innerText = formatTime(e.target.duration);
+
+      this.isWaiting = false;
+      playBtn.classList.remove("waiting");
 
       if (_this.isFirstLoadSong) {
          _this.isFirstLoadSong = false;
