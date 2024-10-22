@@ -1,5 +1,5 @@
 import {
-   songlist,
+   songList,
    timeSliderHolder,
    currentTimeEle,
    switchBtn,
@@ -7,12 +7,11 @@ import {
    rePeatBtn,
    body,
    timeSlider,
-   audio,
-   playBtn,
    durationEle,
 } from "./constant.js";
 import { handleOnPause, updateVolume } from "./handleAudioEvent.js";
 import {
+   // checkStorageAvailable,
    convertToEn,
    generateHSL,
    getLocalStorageItem,
@@ -76,7 +75,7 @@ export const render = function () {
       });
    } else return (songListHTML += "<h1>Error when render songs</h1>");
 
-   songlist.innerHTML = songListHTML;
+   songList.innerHTML = songListHTML;
 };
 
 export const renderMenu = function () {
@@ -147,14 +146,14 @@ const renderCurrentSong = (_this) => {
 
    singerEle.innerText = _this.currentSong.singer;
    titleEle.innerText = _this.currentSong.name;
-   
+
    // cdEle.style.backgroundImage = `url(${
    //    _this.currentSong.image_url || "https://placehold.co/300"
    // })`;
    audioEle.src = _this.currentSong.song_url;
    document.title = _this.currentSong.name;
 
-   songInfoSmall.innerText = `${_this.currentSong.name} - ${_this.currentSong.singer}`
+   songInfoSmall.innerText = `${_this.currentSong.name} - ${_this.currentSong.singer}`;
 };
 
 const toggleActive = function (_this) {
@@ -179,22 +178,22 @@ export const loadCurrentSong = function () {
    if (!currentSong) return console.log("can't load current song");
 
    setLocalStorage("current", currentSong);
-   // setLocalStorage("current-time", 0);
    this.currentSong = currentSong;
 
    renderCurrentSong(this);
    toggleActive(this);
 };
 
+/** don't update song's current time here
+ * update after song loaded instead
+ */
 export const loadLocalStorage = function () {
    this.isRepeat = getLocalStorageItem("isRepeat", false);
    this.isDark = getLocalStorageItem("isDark", false);
-
    const currentSong = getLocalStorageItem("current", null);
-   const currentTime = getLocalStorageItem("current-time", 0);
 
-   this.currentSong = currentSong;
-   audioEle.currentTime = currentTime;
+   if (currentSong) this.currentSong = currentSong;
+   else this.isFirstLoadSong = false;
 
    if (window.innerWidth > 550) {
       const storageVolume = getLocalStorageItem("volume", 1);

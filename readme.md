@@ -14,3 +14,6 @@ npm run start
 ### update 18/10/2024
 - Use next-mp3 backend server
 - Fix ui on old browser
+
+### update 22/10/2024
+- fix audio current time bug

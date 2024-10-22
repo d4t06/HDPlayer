@@ -1,6 +1,6 @@
 import {
    audio,
-   gotopBtn,
+   goTopBtn,
    musicVolume,
    nextBtn,
    playBtn,
@@ -10,16 +10,13 @@ import {
    timeSlider,
 } from "./constant.js";
 import { updateVolume } from "./handleAudioEvent.js";
-import { setLocalStorage } from "./utils/appHelper.js";
+import { getLocalStorageItem, setLocalStorage } from "./utils/appHelper.js";
 
 const $$ = document.querySelectorAll.bind(document);
 
 export default function handleEvent() {
    const _this = this;
    const songElements = $$(".song-item");
-
-   // const cdWidth = cd.offsetWidth;
-   // const isDesktop = window.innerWidth >= 724;
 
    // >>> play song when click
    songElements.forEach((song, index) => {
@@ -35,15 +32,11 @@ export default function handleEvent() {
       };
    });
 
-   // cdImg.onclick = () => {
-   //    handleScrollActiveSongIntoView(true);
-   // };
-
    window.onscroll = function () {
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
 
-      if (scrollTop > 100) gotopBtn.classList.add("show");
-      else gotopBtn.classList.remove("show");
+      if (scrollTop > 100) goTopBtn.classList.add("show");
+      else goTopBtn.classList.remove("show");
    };
 
    musicVolume.onclick = function (e) {
@@ -80,18 +73,10 @@ export default function handleEvent() {
    };
 
    timeSlider.onclick = (e) => {
-      // if (!_this.isLoadedAudio) return;
-
       let playerWidth = timeSlider.offsetWidth;
       let newCurrentTime = Math.floor(((e.clientX - 25) / playerWidth) * 100);
       let newTime = (audio.duration * newCurrentTime) / 100;
       audio.currentTime = +newTime.toFixed(2);
-
-      if (!_this.isPlaying && !this.isWaiting) {
-         console.log("playe");
-
-         audio.play();
-      }
    };
 
    // >>> button handle
@@ -99,6 +84,13 @@ export default function handleEvent() {
       if (_this.isPlaying) {
          audio.pause(); // (default)
       } else {
+         if (_this.isFirstLoadSong) {
+            const currentTime = getLocalStorageItem("current-time", 0);
+            audio.currentTime = currentTime;
+
+            _this.isFirstLoadSong = false;
+         }
+
          audio.play();
       }
    };
@@ -128,7 +120,7 @@ export default function handleEvent() {
       rePeatBtn.classList.toggle("active", value);
    };
 
-   gotopBtn.onclick = () => {
+   goTopBtn.onclick = () => {
       document.body.scrollTop = 0; // For Safari
       document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
    };

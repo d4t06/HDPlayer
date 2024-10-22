@@ -1,6 +1,9 @@
-import { formatTime, setLocalStorage } from "./utils/appHelper.js";
 import {
-   cdImg,
+   formatTime,
+   getLocalStorageItem,
+   setLocalStorage,
+} from "./utils/appHelper.js";
+import {
    playBtn,
    timeSlider,
    timeSliderHolder,
@@ -9,31 +12,26 @@ import {
    volumeSlider,
    volumeSliderHolder,
    audio,
+   control,
 } from "./constant.js";
-// import handleScrollActiveSongIntoView from "./scrollToActive.js";
 
 const $ = document.querySelector.bind(document);
 
-let intervalId = null;
-let setLocalStorageTimerId = 0;
+let intervalId = null; // scroll text
 
 export const handleOnPause = function (_this) {
    playBtn.classList.remove("playing", "waiting");
    _this.isPlaying = false;
-   // cdImg.style.animationPlayState = "paused";
-
-   clearInterval(setLocalStorageTimerId);
 };
 
-export const handleTimeUpdate = function () {
-   const currentTime = audio.currentTime;
+export const handleTimeUpdate = function (time) {
+   const currentTime = time || audio.currentTime;
    const duration = audio.duration;
 
    const ratio = ((currentTime / duration) * 100).toFixed(1);
 
    timeSlider.style.background = `linear-gradient(to right, #999 ${ratio}%, #e1e1e1 ${ratio}%, #e1e1e1 100%)`;
    timeSliderHolder.style.left = ratio + "%";
-
    currentTimeEle.innerText = formatTime(currentTime) || "00:00";
 };
 
@@ -52,7 +50,6 @@ export default function handleAudioEvent() {
    const unScroll = () => {
       let titleEl = $(".title-wrapper h2");
 
-      console.log("unscroll text");
       titleEl.style.transition = `unset`;
       titleEl.style.transform = `translateX(0px)`;
    };
@@ -104,12 +101,6 @@ export default function handleAudioEvent() {
 
       _this.isPlaying = true;
       _this.isWaiting = false;
-      // cdImg.style.animationPlayState = "running";
-
-      setLocalStorageTimerId = setInterval(() => {
-         setLocalStorage("current-time", Math.ceil(audio.currentTime));
-         console.log("set time");
-      }, 3000);
    };
 
    audio.onpause = () => {
@@ -122,8 +113,6 @@ export default function handleAudioEvent() {
       _this.nextSong();
    };
 
-   audio.ontimeupdate = handleTimeUpdate;
-
    audio.onended = function () {
       if (_this.isRepeat) return audio.play();
 
@@ -132,23 +121,32 @@ export default function handleAudioEvent() {
       _this.nextSong();
    };
 
-   audio.onseeked = () => {
-      clearInterval(setLocalStorageTimerId);
-   };
+   audio.addEventListener("timeupdate", () => {
+      handleTimeUpdate();
+
+      if (!!audio.currentTime && Math.round(audio.currentTime) % 3 === 0) {
+         setLocalStorage("current-time", Math.round(audio.currentTime));
+      }
+   });
 
    audio.addEventListener("loadstart", () => {
       this.isWaiting = true;
       playBtn.classList.add("waiting");
+      timeSlider.classList.add("disable");
    });
 
-   audio.addEventListener("loadedmetadata", (e) => {
+   audio.addEventListener("loadedmetadata", async (e) => {
       durationEle.innerText = formatTime(e.target.duration);
 
       this.isWaiting = false;
       playBtn.classList.remove("waiting");
+      timeSlider.classList.remove("disable");
+      control.classList.remove("disable");
 
       if (_this.isFirstLoadSong) {
-         _this.isFirstLoadSong = false;
+         const currentTime = getLocalStorageItem("current-time", 0);
+         handleTimeUpdate(currentTime);
+
          return;
       }
 

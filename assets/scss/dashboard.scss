@@ -51,6 +51,9 @@
             color: #f35858;
             width: 80%;
             margin: 0 auto;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
          }
 
          .musical-note {
@@ -138,7 +141,7 @@
             top: 0;
             left: 0;
             color: rgb(243, 88, 88);
-            transform: translate(-50%, -30%);
+            transform: translate(-50%, -40%);
          }
       }
 
@@ -215,7 +218,7 @@
 
             &.playing {
                .pause-icon {
-                  display: flex;
+                  display: block;
                }
                .play-icon {
                   display: none;
@@ -226,7 +229,7 @@
             }
             &.waiting {
                .wait-icon {
-                  display: flex;
+                  display: block;
                }
                .play-icon {
                   display: none;
@@ -250,11 +253,13 @@
       opacity: 0;
       pointer-events: none;
 
-      bottom: 20px;
+      bottom: 90px;
       right: 20px;
 
-      background-color: #ccc;
+      background-color: #fff;
+      box-shadow: 2px 2px 16px rgba($color: #000000, $alpha: .15);
       border-radius: 50%;
+      color: #f35858;
 
       &.show {
          transform: translateY(0);

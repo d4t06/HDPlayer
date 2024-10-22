@@ -68,7 +68,7 @@ export default function songLyric() {
    };
 
    const getLyric = async () => {
-      if (!_this.songs[_this.currentIndex]) return showEmpty();
+      if (!_this.currentSong) return showEmpty();
 
       try {
          showLoading();
@@ -76,7 +76,7 @@ export default function songLyric() {
 
          const res = await fetch(
             `https://nest-mp3.vercel.app/api/song-lyrics?song_id=${
-               _this.songs[_this.currentIndex].id
+               _this.currentSong.id
             }`
          );
 

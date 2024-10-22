@@ -102,3 +102,12 @@ button {
    border: none;
    background-color: unset;
 }
+
+.disable {
+   pointer-events: none;
+   opacity: 0.6;
+}
+
+.audio {
+   display: none;
+}

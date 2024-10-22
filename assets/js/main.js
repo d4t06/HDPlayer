@@ -22,11 +22,14 @@ const app = {
    isWaiting: true,
 
    isFirstLoadSong: true,
-   currentIndex: 0,
+   currentIndex: null,
+   currentSong: null,
    isDark: false,
 
    songs: [],
    endOfList: false,
+
+   isLocalStorageAvailable: true,
 
    //actions
    fetchSongs,

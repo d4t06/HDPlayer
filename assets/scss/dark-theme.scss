@@ -27,6 +27,12 @@ body.dark {
             background-color: #823d3d !important;
          }
       }
+
+
+      .go-top-btn {
+         background-color: #333;
+         box-shadow: 2px 2px 16px rgba($color: #fff, $alpha: .15);
+      }
     
       & ~ .menu {
          .menu-header {
