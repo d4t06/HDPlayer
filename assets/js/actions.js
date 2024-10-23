@@ -62,15 +62,8 @@ export const render = function () {
          songListHTML += `<div class="song-item ${
             this.currentSong && this.currentSong.id === song.id ? "active" : ""
          }" id="${song.id}">
-            <div class="song-frame" style="background-color: ${generateHSL(
-               song.name
-            )}">
-               ${song.name.charAt(0)}
-            </div>
-            <div class="song-info">
               <h2>${song.name}</h2>
               <h4>${song.singer}</h4>
-            </div>
           </div>`;
       });
    } else return (songListHTML += "<h1>Error when render songs</h1>");

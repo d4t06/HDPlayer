@@ -6,17 +6,15 @@
       "deploy": "gh-pages -d dist",
       "start": "npx gulp watch",
       "build": "npx gulp build"
-
    },
    "dependencies": {
       "browser-sync": "^2.29.3",
       "gh-pages": "^6.1.1",
-      "gulp":  "^4.0.2",
+      "gulp": "^4.0.2",
       "gulp-concat": "^2.6.1",
       "gulp-htmlmin": "^5.0.1",
       "gulp-processhtml": "^1.2.0",
       "gulp-sass": "^5.1.0",
-      "gulp-sourcemaps": "^3.0.0",
       "gulp-terser": "^2.1.0",
       "node-sass": "^9.0.0"
    }

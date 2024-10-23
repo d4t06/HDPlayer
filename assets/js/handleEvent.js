@@ -21,12 +21,11 @@ export default function handleEvent() {
    // >>> play song when click
    songElements.forEach((song, index) => {
       song.onclick = (e) => {
-         if (e.target.parentElement.classList.contains("song-detail")) return;
+         if (songElements[_this.currentIndex].contains(e.target)) return;
 
          if (!_this.currentSong || song.id !== _this.currentSong.id) {
             _this.currentIndex = index;
-
-            // set and load current song
+            _this.isFirstLoadSong = false;
             _this.loadCurrentSong();
          }
       };

@@ -3,7 +3,12 @@
 @include sm {
    .player {
       display: flex;
-      height: 100vh;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      overflow: hidden;
 
       .dashboard {
          position: relative;
@@ -29,6 +34,7 @@
 
       .song-list {
          width: 50%;
+         height: 100%;
          padding-top: 10px;
          overflow: auto;
       }

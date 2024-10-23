@@ -1,6 +1,5 @@
 .song-item {
-   padding: 12px;
-   display: flex;
+   padding: 8px;
    background-color: #fff;
    border-radius: 6px;
    overflow: hidden;
@@ -16,39 +15,23 @@
       color: #fff;
    }
 
-   .song-frame {
-      width: 44px;
-      height: 44px;
-      flex-shrink: 0;
-      border-radius: 99px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 10px;
-      font-size: 2.5rem;
-      color: white;
+   overflow: hidden;
+   flex-grow: 1;
+   h2 {
+      font-size: 1.8rem;
       font-weight: 500;
-   }
 
-   .song-info {
       overflow: hidden;
-      flex-grow: 1;
-      h2 {
-         font-size: 1.8rem;
-         font-weight: 500;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+   }
+   h4 {
+      font-size: 1.6rem;
+      font-weight: 500;
+      opacity: 0.6;
 
-         overflow: hidden;
-         white-space: nowrap;
-         text-overflow: ellipsis;
-      }
-      h4 {
-         font-size: 1.6rem;
-         font-weight: 500;
-         opacity: 0.6;
-
-         overflow: hidden;
-         white-space: nowrap;
-         text-overflow: ellipsis;
-      }
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
    }
 }
