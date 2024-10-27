@@ -25,27 +25,27 @@ export const convertToEn = (name) =>
       .replace(/ỳ|ý|ý|ỷ|ỹ/g, "y")
       .replace(/đ/g, "d");
 
-const getHashOfString = (str) => {
-   const array = Array.from(str);
-   return array.reduce(
-      (total, _char, index) => (total += str.charCodeAt(index)),
-      0
-   );
-};
+// const getHashOfString = (str) => {
+//    const array = Array.from(str);
+//    return array.reduce(
+//       (total, _char, index) => (total += str.charCodeAt(index)),
+//       0
+//    );
+// };
 
-const hRange = [0, 360];
-const sRange = [50, 75];
-const lRange = [25, 55];
+// const hRange = [0, 360];
+// const sRange = [50, 75];
+// const lRange = [25, 55];
 
-const normalizeHash = (hash, min, max) => {
-   return Math.floor((hash % (max - min)) + min);
-};
+// const normalizeHash = (hash, min, max) => {
+//    return Math.floor((hash % (max - min)) + min);
+// };
 
-export const generateHSL = (name) => {
-   const hash = getHashOfString(name);
-   const h = normalizeHash(hash, hRange[0], hRange[1]);
-   const s = normalizeHash(hash, sRange[0], sRange[1]);
-   const l = normalizeHash(hash, lRange[0], lRange[1]);
+// export const generateHSL = (name) => {
+//    const hash = getHashOfString(name);
+//    const h = normalizeHash(hash, hRange[0], hRange[1]);
+//    const s = normalizeHash(hash, sRange[0], sRange[1]);
+//    const l = normalizeHash(hash, lRange[0], lRange[1]);
 
-   return `hsl(${h}, ${s}%, ${l}%)`;
-};
+//    return `hsl(${h}, ${s}%, ${l}%)`;
+// };

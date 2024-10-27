@@ -1,5 +1,4 @@
 import { setLocalStorage } from "./utils/appHelper.js";
-import { handleOnPause } from "./handleAudioEvent.js";
 
 const $ = document.querySelector.bind(document);
 const level2 = $(".level2");
@@ -14,7 +13,6 @@ export const HandleGoBack = (_this) => {
 
 const handleMenuEvents = (_this) => {
    const switchBtn = $(".switch");
-   const songListSelect = $("#songListSelect");
    const toggleInfoBtn = $(".toggle-info");
    // const player = $(".player");
    // _this.setSettings();
@@ -53,30 +51,30 @@ const handleMenuEvents = (_this) => {
    };
 
    // handle select playlist
-   songListSelect.onchange = (e) => {
-      // pause
-      handleOnPause(_this);
-      const playlistName = e.target.value;
+   // songListSelect.onchange = (e) => {
+   //    // pause
+   //    handleOnPause(_this);
+   //    const playlistName = e.target.value;
 
-      if (playlistName) {
-         const playlist = _this.playlists.find(
-            (playlist) => playlist.name === e.target.value
-         );
-         const playlistSongs = getPlaylistSongs(playlist, _this.songs);
+   //    if (playlistName) {
+   //       const playlist = _this.playlists.find(
+   //          (playlist) => playlist.name === e.target.value
+   //       );
+   //       const playlistSongs = getPlaylistSongs(playlist, _this.songs);
 
-         _this.playlistSongs = playlistSongs;
-         _this.song_in = "playlist";
-      } else {
-         _this.song_in = "songs";
-      }
+   //       _this.playlistSongs = playlistSongs;
+   //       _this.song_in = "playlist";
+   //    } else {
+   //       _this.song_in = "songs";
+   //    }
 
-      _this.currentIndex = 0;
-      _this.getActuallySongs();
+   //    _this.currentIndex = 0;
+   //    _this.getActuallySongs();
 
-      _this.render();
-      _this.loadCurrentSong();
-      _this.handleEvents();
-   };
+   //    _this.render();
+   //    _this.loadCurrentSong();
+   //    _this.handleEvents();
+   // };
 };
 
 const getPlaylistSongs = (playlist, songs) => {

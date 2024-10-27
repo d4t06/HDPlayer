@@ -28,22 +28,17 @@ body.dark {
          }
       }
 
-
       .go-top-btn {
          background-color: #333;
-         box-shadow: 2px 2px 16px rgba($color: #fff, $alpha: .15);
+         box-shadow: 2px 2px 16px rgba($color: #fff, $alpha: 0.15);
       }
-    
+
       & ~ .menu {
-         .menu-header {
-            background-color: #333;
+         background-color: #222;
+         .close-sidebar-btn {
             color: #fff;
-            .closeMenu {
-               color: #999;
-            }
          }
          .menu-body {
-            background-color: #222;
             color: #fff;
          }
          .level2 {

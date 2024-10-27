@@ -13,7 +13,7 @@ import { handleOnPause, updateVolume } from "./handleAudioEvent.js";
 import {
    // checkStorageAvailable,
    convertToEn,
-   generateHSL,
+   // generateHSL,
    getLocalStorageItem,
    setLocalStorage,
 } from "./utils/appHelper.js";

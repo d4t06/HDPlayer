@@ -21,7 +21,7 @@ export default function handleEvent() {
    // >>> play song when click
    songElements.forEach((song, index) => {
       song.onclick = (e) => {
-         if (songElements[_this.currentIndex].contains(e.target)) return;
+         if (_this.currentIndex && songElements[_this.currentIndex].contains(e.target)) return;
 
          if (!_this.currentSong || song.id !== _this.currentSong.id) {
             _this.currentIndex = index;
@@ -72,6 +72,7 @@ export default function handleEvent() {
    };
 
    timeSlider.onclick = (e) => {
+
       let playerWidth = timeSlider.offsetWidth;
       let newCurrentTime = Math.floor(((e.clientX - 25) / playerWidth) * 100);
       let newTime = (audio.duration * newCurrentTime) / 100;
