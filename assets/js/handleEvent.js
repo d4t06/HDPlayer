@@ -21,7 +21,11 @@ export default function handleEvent() {
    // >>> play song when click
    songElements.forEach((song, index) => {
       song.onclick = (e) => {
-         if (_this.currentIndex && songElements[_this.currentIndex].contains(e.target)) return;
+         if (
+            _this.currentIndex &&
+            songElements[_this.currentIndex].contains(e.target)
+         )
+            return;
 
          if (!_this.currentSong || song.id !== _this.currentSong.id) {
             _this.currentIndex = index;
@@ -72,6 +76,7 @@ export default function handleEvent() {
    };
 
    timeSlider.onclick = (e) => {
+      // _this.status = "waiting";
 
       let playerWidth = timeSlider.offsetWidth;
       let newCurrentTime = Math.floor(((e.clientX - 25) / playerWidth) * 100);
@@ -80,7 +85,7 @@ export default function handleEvent() {
    };
 
    // >>> button handle
-   playBtn.onclick = function () {
+   const handlePlayPause = async () => {
       if (_this.isPlaying) {
          audio.pause(); // (default)
       } else {
@@ -91,9 +96,11 @@ export default function handleEvent() {
             _this.isFirstLoadSong = false;
          }
 
-         audio.play();
+         await audio.play();
       }
    };
+
+   playBtn.onclick = handlePlayPause;
 
    nextBtn.onclick = function () {
       _this.nextSong();
@@ -124,4 +131,15 @@ export default function handleEvent() {
       document.body.scrollTop = 0; // For Safari
       document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
    };
+
+   window.addEventListener("popstate", (e) => {
+
+      console.log(e.key);
+
+      // if (e.key === "MediaPause") {
+      //    handlePlayPause();
+      // }
+   });
+
+
 }

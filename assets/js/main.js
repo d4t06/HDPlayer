@@ -18,9 +18,6 @@ import songLyric from "./songLyric.js";
 const app = {
    isRepeat: false,
    isRandom: false,
-   isPlaying: false,
-   isWaiting: true,
-
    isFirstLoadSong: true,
    currentIndex: null,
    currentSong: null,
