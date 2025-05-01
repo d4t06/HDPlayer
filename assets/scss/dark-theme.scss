@@ -1,62 +1,62 @@
-body.dark {
-   background-color: #333;
+// body.dark {
+//    background-color: #333;
 
-   .player {
-      .dashboard {
-         background-color: black;
-         border-color: #333;
-         h2 {
-            color: #ccc;
-         }
-         .volumeSlider,
-         .timeSlider {
-            background-color: #333;
-         }
+//    .player {
+//       .dashboard {
+//          background-color: black;
+//          border-color: #333;
+//          h2 {
+//             color: #ccc;
+//          }
+//          .volumeSlider,
+//          .timeSlider {
+//             background-color: #333;
+//          }
 
-         .song-lyric {
-            .lyric.active {
-               color: #ffed00;
-            }
-         }
-      }
+//          .song-lyric {
+//             .lyric.active {
+//                color: #ffed00;
+//             }
+//          }
+//       }
 
-      .song-item {
-         background-color: black;
-         color: white;
-         &.active {
-            background-color: #823d3d !important;
-         }
-      }
+//       .song-item {
+//          background-color: black;
+//          color: white;
+//          &.active {
+//             background-color: #823d3d !important;
+//          }
+//       }
 
-      .go-top-btn {
-         background-color: #333;
-         box-shadow: 2px 2px 16px rgba($color: #fff, $alpha: 0.15);
-      }
+//       .go-top-btn {
+//          background-color: #333;
+//          box-shadow: 2px 2px 16px rgba($color: #fff, $alpha: 0.15);
+//       }
 
-      & ~ .menu {
-         background-color: #222;
-         .close-sidebar-btn {
-            color: #fff;
-         }
-         .menu-body {
-            color: #fff;
-         }
-         .level2 {
-            background-color: #222;
-            color: #fff;
-            .header {
-               button {
-                  color: #fff;
-               }
-            }
-         }
-         .separate {
-            border-color: rgba($color: #fff, $alpha: 0.1) !important ;
-         }
-         .contact a {
-            color: #fff !important;
-            background-color: rgba($color: #fff, $alpha: 0.1);
-         }
-      }
-   }
-}
+//       & ~ .menu {
+//          background-color: #222;
+//          .close-sidebar-btn {
+//             color: #fff;
+//          }
+//          .menu-body {
+//             color: #fff;
+//          }
+//          .level2 {
+//             background-color: #222;
+//             color: #fff;
+//             .header {
+//                button {
+//                   color: #fff;
+//                }
+//             }
+//          }
+//          .separate {
+//             border-color: rgba($color: #fff, $alpha: 0.1) !important ;
+//          }
+//          .contact a {
+//             color: #fff !important;
+//             background-color: rgba($color: #fff, $alpha: 0.1);
+//          }
+//       }
+//    }
+// }

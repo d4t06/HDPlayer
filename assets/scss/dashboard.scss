@@ -1,4 +1,4 @@
-@import "common";
+@use "./common" as *;
 
 .player {
    .dashboard {
@@ -6,8 +6,8 @@
       top: 0;
       width: 100%;
       z-index: 1;
-      background-color: #fff;
-      border-bottom: 8px solid #e1e1e1;
+      background-color: var(--dashboard-color);
+      border-bottom: 8px solid var(--body-color);
       padding: 16px 20px 16px;
 
       @mixin hide {
@@ -48,7 +48,7 @@
             text-align: center;
             font-size: 1.4rem;
             font-weight: 500;
-            color: #f35858;
+            color: var(--primary-color);
             width: 80%;
             margin: 0 auto;
             text-overflow: ellipsis;
@@ -81,12 +81,10 @@
       .song-lyric {
          cursor: pointer;
          position: relative;
-         height: 30vh;
+         height: 50vh;
          padding-top: 12px;
          overflow: auto;
-         text-align: center;
-         color: #666;
-         font-size: 2.4rem;
+         font-size: 2rem;
          font-weight: 700;
 
          @include sm {
@@ -99,8 +97,13 @@
 
          .lyric {
             padding-top: 20px;
+            width: 70%;
+            opacity: 0.4;
             &.active {
-               color: #f35858;
+               transform: scale(1.3);
+               transition: transform linear 0.25s;
+               transform-origin: left;
+               opacity: 1;
             }
 
             &:last-child {
@@ -140,7 +143,7 @@
             position: absolute;
             top: 0;
             left: 0;
-            color: rgb(243, 88, 88);
+            color: var(--primary-color);
             transform: translate(-50%, -40%);
          }
       }
@@ -172,7 +175,7 @@
          margin-top: 12px;
          display: flex;
          justify-content: space-between;
-         color: #f35858;
+         color: var(--primary-color);
          .current-time {
             color: #999;
          }
@@ -207,7 +210,7 @@
          .play-btn {
             color: #fff;
             border-radius: 50%;
-            background-color: rgb(243, 88, 88);
+            background-color: var(--primary-color);
             .wait-icon {
                animation: spin 1s linear infinite;
                display: none;
@@ -249,7 +252,9 @@
       position: fixed;
       padding: 8px;
       transform: translateY(10px);
-      transition: transform linear 0.25s, opacity linear 0.25s;
+      transition:
+         transform linear 0.25s,
+         opacity linear 0.25s;
       opacity: 0;
       pointer-events: none;
 
@@ -257,7 +262,7 @@
       right: 20px;
 
       background-color: #fff;
-      box-shadow: 2px 2px 16px rgba($color: #000000, $alpha: .15);
+      box-shadow: 2px 2px 16px rgba($color: #000000, $alpha: 0.15);
       border-radius: 50%;
       color: #f35858;
 

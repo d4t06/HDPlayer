@@ -16,6 +16,6 @@
       "gulp-processhtml": "^1.2.0",
       "gulp-sass": "^5.1.0",
       "gulp-terser": "^2.1.0",
-      "node-sass": "^9.0.0"
+      "sass-embedded": "^1.87.0"
    }
 }

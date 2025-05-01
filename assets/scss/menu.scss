@@ -3,7 +3,9 @@
 }
 
 #input:checked ~ .menu {
-   transition: transform linear 0.3s, opacity linear 0.3s;
+   transition:
+      transform linear 0.3s,
+      opacity linear 0.3s;
    transform: translateX(0%);
    opacity: 1;
 }
@@ -18,15 +20,17 @@
    max-width: 350px;
    opacity: 0.5;
    transform: translateX(-100%);
-   transition: transform linear 0.15s, opacity linear 0.15s;
+   transition:
+      transform linear 0.15s,
+      background-color linear 0.15s,
+      opacity linear 0.15s;
    z-index: 2;
-   background-color: #fff;
+   background-color: var(--body-color);
 
    .close-sidebar-btn {
       position: absolute;
       top: 12px;
       right: 12px;
-      color: #333;
       font-size: 2rem;
       padding: 5px;
       z-index: 9;
@@ -132,10 +136,11 @@
 // submenu
 .level2 {
    overflow: auto;
+   background-color: var(--body-color);
    .level2-content {
       padding: 0 10px;
       .menu-back-btn {
-         background-color: unset;
+         color: inherit;
          border: none;
          padding: 5px;
          margin-top: 15px;
@@ -206,7 +211,7 @@
          width: 40px;
          border-radius: 50%;
          transition: scale linear 0.15 s;
-         color: #000;
+         color: inherit;
          padding: 10px;
          & + a {
             margin-left: 6px;

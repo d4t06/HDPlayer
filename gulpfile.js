@@ -2,7 +2,7 @@ var gulp = require("gulp");
 // hot reload
 var browserSync = require("browser-sync");
 // scss
-var sass = require("gulp-sass")(require("node-sass"));
+var sass = require("gulp-sass")(require("sass-embedded"));
 var concat = require("gulp-concat");
 // html
 var minHTML = require("gulp-htmlmin");

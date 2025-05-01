@@ -17,3 +17,6 @@ npm run start
 
 ### update 22/10/2024
 - fix audio current time bug
+
+### update 1/5/2025
+- use css variable for dark theme

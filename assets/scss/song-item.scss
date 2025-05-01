@@ -1,9 +1,11 @@
 .song-item {
    padding: 8px;
-   background-color: #fff;
+   background-color: var(--song-bg);
    border-radius: 6px;
    overflow: hidden;
    cursor: pointer;
+   overflow: hidden;
+   flex-grow: 1;
 
    + {
       .song-item {
@@ -11,12 +13,10 @@
       }
    }
    &.active {
-      background-color: rgb(243, 88, 88) !important;
+      background-color: var(--primary-color);
       color: #fff;
    }
 
-   overflow: hidden;
-   flex-grow: 1;
    h2 {
       font-size: 1.8rem;
       font-weight: 500;
