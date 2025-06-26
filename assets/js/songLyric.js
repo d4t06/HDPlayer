@@ -75,7 +75,7 @@ export default function songLyric() {
          ranGetLyric = true;
 
          const res = await fetch(
-            `https://nest-mp3.vercel.app/api/song-lyrics?song_id=${
+            `https://nest-mp3-production.up.railway.app/api/song-lyrics?song_id=${
                _this.currentSong.id
             }`
          );

@@ -8,7 +8,9 @@
       "build": "npx gulp build"
    },
    "dependencies": {
+      "@heroicons/vue": "^2.2.0",
       "browser-sync": "^2.29.3",
+      "class-variance-authority": "^0.7.1",
       "gh-pages": "^6.1.1",
       "gulp": "^4.0.2",
       "gulp-concat": "^2.6.1",

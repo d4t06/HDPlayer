@@ -33,7 +33,7 @@ export const getActuallySongs = function () {
 
 export const fetchSongs = async function () {
    try {
-      const res = await fetch("https://nest-mp3.vercel.app/api/songs");
+      const res = await fetch("https://nest-mp3-production.up.railway.app/api/songs");
       if (!res.ok) throw new Error("");
 
       const payload = await res.json();
