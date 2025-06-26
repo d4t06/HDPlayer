@@ -25,10 +25,8 @@ const audioEle = $(".audio");
 let actuallySongs = [];
 
 export const getActuallySongs = function () {
-   console.log("get actually songs");
+   console.log("test console.lof");
    actuallySongs = this.songs;
-   // actuallySongs =
-   //    this.song_in === "playlist" ? this.playlistSongs : this.songs;
 };
 
 export const fetchSongs = async function () {
